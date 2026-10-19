@@ -1,0 +1,15 @@
+:root {
+    --emerald: #0e5046;
+    --gold: #c7a24a;
+    --cream: #f4edda;
+    --ink: #000000; 
+}
+
+h1 {
+    background-color: #70bb2a;
+    font-size: 40px;
+}
+
+.hero{
+    background-color: var(--cream);
+}

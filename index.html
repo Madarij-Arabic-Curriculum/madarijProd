@@ -4,26 +4,127 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href = "style.css">
+
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Fonts: Lora for headings, Inter for body text, and Amiri for Arabic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;600&family=Lora:wght@600;700&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
 </head>
+
 <body>
+    <!-- Primary navigation -->
     <nav>
-        <!-- Nav Bar, No Destination at this Time -->
-         
-        <a href = "#"> Home  </a>  |X| 
-        <a href = "#"> How it Works  </a>  |X| 
-        <a href = "#"> Contact  </a> |X| 
-        <a href = "#"> View Resources  </a>  
+        <!-- Navigation logo -->
+        <div class="navLogo">
+            <img src="Elements/Full Icon.jpg" alt="Icon" width="100px">
+        </div>
+
+        <div class="navDropdown">
+            <!-- Navigation links -->
+            <div class="navLinks">
+                <a href="#">How It Works</a>
+                <a href="#">Contact</a>
+            </div>
+
+            <!-- Navigation action buttons -->
+            <div class="navButtonContainer">
+                <button type="button" class="navButtonSecondary">Log In</button>
+                <button type="button" class="navButton">Get Started</button>
+            </div>
+        </div>
+
+
+        <!-- Mobile navigation toggle -->
+        <div class="hamburgerContainer">
+            <button
+                class="hamburgerButton"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false">
+                ☰
+            </button>
+        </div>
     </nav>
 
-    <section class = "hero">
+    <!-- Hero section -->
+    <section class="hero">
         <!-- Hero Banner -->
-         <div>
-            <!-- Main Text -->
-             <h1> Header Text Here </h1>
-             <p> Followed by a Tag Line </p>
+        <div>
+            <!-- Main text -->
+            <h1>Sample Text With Imp and <span class="highlight">Nice</span> Information.</h1>
+            <p>Followed by a Tag Line Explaning the Product.</p>
+        </div>
 
-         </div>
+        <!-- Hero action buttons -->
+        <div class="actionBar">
+            <button type="button" class="primaryButton">Primary Action</button>
+            <button type="button" class="secondaryButton">Secondary Action</button>
+        </div>
     </section>
+
+    <!-- How It Works section -->
+    <section class="howItWorks">
+        <div>
+            <h2>How It Works</h2>
+            <br>
+            <br>
+        </div>
+        <div class="squares">
+            <!-- Step one -->
+            <div class="uniqueSquare">
+                <div class="squareHeader">
+                    <h4 class="circle">1</h4>
+                    <h5 class="squareTitle">Step One</h5>
+                </div>
+
+                <div class="squareContent">
+                    <p>Begin with the first level and explore the core lessons.</p>
+                </div>
+            </div>
+
+            <!-- Step two -->
+            <div class="uniqueSquare">
+                <div class="squareHeader">
+                    <h4 class="circle">2</h4>
+                    <h5 class="squareTitle">Step Two</h5>
+                </div>
+
+                <div class="squareContent">
+                    <p>Continue through the next level with new topics and activities.</p>
+                </div>
+            </div>
+
+            <!-- Step three -->
+            <div class="uniqueSquare">
+                <div class="squareHeader">
+                    <h4 class="circle">3</h4>
+                    <h5 class="squareTitle">Step Three</h5>
+                </div>
+
+                <div class="squareContent">
+                    <p>Build on earlier lessons as you move through the curriculum.</p>
+                </div>
+            </div>
+
+            <!-- Step four -->
+            <div class="uniqueSquare">
+                <div class="squareHeader">
+                    <h4 class="circle">4</h4>
+                    <h5 class="squareTitle">Step 4</h5>
+                </div>
+
+                <div class="squareContent">
+                    <p>Review the available pathway and prepare for the next stage.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Temporary space for a future section -->
+    <section style="height: 500px;"></section>
 </body>
 </html>

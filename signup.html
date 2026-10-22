@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | Madarij</title>
+
+    <!-- Reuse the main Madarij design system. -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Fonts: Lora for headings and Inter for body text. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Lora:wght@600;700&display=swap">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <!-- Primary navigation -->
+    <nav>
+        <div class="navLogo">
+            <a href="index.html" aria-label="Return to Madarij home">
+                <img src="Elements/Full Icon.jpg" alt="Madarij home" width="100">
+            </a>
+        </div>
+
+        <div class="navDropdown">
+            <div class="navLinks">
+                <a href="index.html">How It Works</a>
+                <a href="#">Contact</a>
+            </div>
+
+            <div class="navButtonContainer">
+                <a class="navButtonSecondary" href="login.html">Log In</a>
+                <a class="navButton" href="signup.html" aria-current="page">Get Started</a>
+            </div>
+        </div>
+
+        <div class="hamburgerContainer">
+            <button
+                class="hamburgerButton"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false">
+                ☰
+            </button>
+        </div>
+    </nav>
+
+    <main class="loginPage loginPageSignup">
+        <section class="loginCard" aria-labelledby="signupHeading">
+            <p class="sectionLabel">Begin your journey</p>
+            <h1 id="signupHeading">Here is a signup heading.</h1>
+            <p class="loginIntro">
+                Choose a starting point and begin building your learning routine.
+            </p>
+
+            <!-- This form is visual only until account creation is connected. -->
+            <form class="loginForm" action="#" method="post">
+                <div class="loginField">
+                    <label for="name">Full name</label>
+                    <input id="name" name="name" type="text" autocomplete="name" required>
+                </div>
+
+                <div class="loginField">
+                    <label for="email">Email address</label>
+                    <input id="email" name="email" type="email" autocomplete="email" required>
+                </div>
+
+                <div class="loginField">
+                    <label for="password">Password</label>
+                    <input id="password" name="password" type="password" autocomplete="new-password" required>
+                </div>
+
+                <div class="loginField">
+                    <label for="confirmPassword">Confirm password</label>
+                    <input id="confirmPassword" name="confirmPassword" type="password" autocomplete="new-password" required>
+                </div>
+
+                <button class="loginSubmit" type="submit">Create Account</button>
+            </form>
+
+            <p class="signupPrompt">
+                Already have an account?
+                <a href="login.html">Log in</a>
+            </p>
+
+            <p class="loginNote">
+                Account creation will be connected here later.
+            </p>
+        </section>
+
+        <aside class="authVisual" aria-label="About Madarij">
+            <img src="Elements/Full Logo.jpg" alt="Madarij">
+            <h2>Here is another account heading.</h2>
+            <p>
+                Start with a foundation and build toward the next stage at
+                your own pace.
+            </p>
+        </aside>
+    </main>
+</body>
+</html>

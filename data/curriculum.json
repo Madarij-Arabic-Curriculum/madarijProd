@@ -1,0 +1,187 @@
+[
+  {
+    "title": "Level 0",
+    "description": "Build a comfortable foundation for learning.",
+    "units": [
+      {
+        "title": "Unit 1: Foundations",
+        "lessons": [
+          {
+            "title": "Getting Started",
+            "description": "Here is a short lesson description.",
+            "time": "15 min",
+            "materials": [
+              {
+                "title": "Welcome guide",
+                "url": "https://drive.google.com/file/d/REPLACE_WITH_FILE_ID/view",
+                "keywords": ["welcome", "orientation", "start"]
+              },
+              {
+                "title": "Starting checklist",
+                "url": "https://drive.google.com/file/d/REPLACE_WITH_FILE_ID/view",
+                "keywords": ["checklist", "setup", "begin"]
+              }
+            ]
+          },
+          {
+            "title": "Learning Routine",
+            "description": "Here is another short lesson description.",
+            "time": "20 min",
+            "materials": [
+              {
+                "title": "Routine overview",
+                "url": "https://drive.google.com/file/d/REPLACE_WITH_FILE_ID/view",
+                "keywords": ["routine", "schedule", "study"]
+              },
+              {
+                "title": "Practice worksheet",
+                "url": "https://drive.google.com/file/d/REPLACE_WITH_FILE_ID/view",
+                "keywords": ["practice", "worksheet", "activity"]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Level 1",
+    "description": "Explore the first core lessons.",
+    "units": [
+      {
+        "title": "Unit 1: Core Concepts",
+        "lessons": [
+          {
+            "title": "Core Lesson One",
+            "description": "Here is a description for the first core lesson.",
+            "time": "25 min",
+            "materials": [
+              {
+                "title": "Lesson notes",
+                "url": "https://drive.google.com/file/d/REPLACE_WITH_FILE_ID/view",
+                "keywords": ["notes", "core", "lesson"]
+              },
+              {
+                "title": "Vocabulary sheet",
+                "url": "https://drive.google.com/file/d/REPLACE_WITH_FILE_ID/view",
+                "keywords": ["vocabulary", "words", "review"]
+              },
+              {
+                "title": "Practice activity",
+                "url": "https://drive.google.com/file/d/REPLACE_WITH_FILE_ID/view",
+                "keywords": ["practice", "activity", "exercise"]
+              }
+            ]
+          },
+          {
+            "title": "Review and Reflect",
+            "description": "Here is a description for a review lesson.",
+            "time": "15 min",
+            "materials": [
+              {
+                "title": "Review questions",
+                "url": "https://drive.google.com/file/d/REPLACE_WITH_FILE_ID/view",
+                "keywords": ["review", "questions", "check"]
+              },
+              {
+                "title": "Reflection prompt",
+                "url": "https://drive.google.com/file/d/REPLACE_WITH_FILE_ID/view",
+                "keywords": ["reflection", "writing", "response"]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Level 2",
+    "description": "Build on earlier ideas with new topics.",
+    "units": [
+      {
+        "title": "Unit 1: Building Skills",
+        "lessons": [
+          {
+            "title": "Building Connections",
+            "description": "Here is a description for a lesson about connections.",
+            "time": "30 min",
+            "materials": [
+              {
+                "title": "Lesson notes",
+                "url": "https://drive.google.com/file/d/REPLACE_WITH_FILE_ID/view",
+                "keywords": ["notes", "connections", "ideas"]
+              },
+              {
+                "title": "Example set",
+                "url": "https://drive.google.com/file/d/REPLACE_WITH_FILE_ID/view",
+                "keywords": ["examples", "reference", "skills"]
+              }
+            ]
+          },
+          {
+            "title": "Guided Practice",
+            "description": "Here is a description for a guided practice lesson.",
+            "time": "25 min",
+            "materials": [
+              {
+                "title": "Guided activity",
+                "url": "https://drive.google.com/file/d/REPLACE_WITH_FILE_ID/view",
+                "keywords": ["guided", "activity", "practice"]
+              },
+              {
+                "title": "Progress checklist",
+                "url": "https://drive.google.com/file/d/REPLACE_WITH_FILE_ID/view",
+                "keywords": ["progress", "checklist", "tracking"]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Level 3",
+    "description": "Bring the pathway together and prepare for what comes next.",
+    "units": [
+      {
+        "title": "Unit 1: Moving Forward",
+        "lessons": [
+          {
+            "title": "Putting It Together",
+            "description": "Here is a description for bringing ideas together.",
+            "time": "35 min",
+            "materials": [
+              {
+                "title": "Lesson notes",
+                "url": "https://drive.google.com/file/d/REPLACE_WITH_FILE_ID/view",
+                "keywords": ["notes", "application", "review"]
+              },
+              {
+                "title": "Application activity",
+                "url": "https://drive.google.com/file/d/REPLACE_WITH_FILE_ID/view",
+                "keywords": ["application", "activity", "put together"]
+              }
+            ]
+          },
+          {
+            "title": "Next Steps Review",
+            "description": "Here is a description for reviewing the next steps.",
+            "time": "20 min",
+            "materials": [
+              {
+                "title": "Review guide",
+                "url": "https://drive.google.com/file/d/REPLACE_WITH_FILE_ID/view",
+                "keywords": ["review", "guide", "next steps"]
+              },
+              {
+                "title": "Personal goals worksheet",
+                "url": "https://drive.google.com/file/d/REPLACE_WITH_FILE_ID/view",
+                "keywords": ["goals", "worksheet", "planning"]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

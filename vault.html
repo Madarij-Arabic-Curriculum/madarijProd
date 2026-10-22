@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Vault | Madarij</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Lora:wght@600;700&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <nav>
+        <div class="navLogo">
+            <a href="index.html" aria-label="Return to Madarij home">
+                <img src="Elements/Full Icon.jpg" alt="Madarij home" width="100">
+            </a>
+        </div>
+
+        <div class="navDropdown">
+            <div class="navLinks">
+                <a href="index.html">How It Works</a>
+                <a href="#">Contact</a>
+            </div>
+
+            <div class="navButtonContainer">
+                <a class="navButtonSecondary" href="#">Book a Help Session</a>
+                <a class="navButton" href="vault.html" aria-current="page">Enter the Vault</a>
+            </div>
+        </div>
+
+        <div class="hamburgerContainer">
+            <button
+                class="hamburgerButton"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false">
+                ☰
+            </button>
+        </div>
+    </nav>
+
+    <main class="vaultPage">
+        <!-- Full-screen opening animation -->
+        <section class="vaultScene" aria-label="Opening the Madarij Vault">
+            <div class="vaultContent">
+                <p class="sectionLabel">The Madarij Vault</p>
+                <h1>Here is an opening heading.</h1>
+            </div>
+
+            <div class="vaultDoor vaultDoorLeft" aria-hidden="true"></div>
+            <div class="vaultDoor vaultDoorRight" aria-hidden="true"></div>
+        </section>
+
+        <!-- Curriculum dashboard -->
+        <section class="vaultDashboard" aria-labelledby="vaultHeading">
+            <div class="vaultHeader">
+                <div class="vaultIntro">
+                    <p class="sectionLabel">Curriculum workspace</p>
+                    <h1 id="vaultHeading">Here is a workspace heading.</h1>
+                    <p>
+                        Browse levels, open lessons, and find the materials
+                        that support each stage.
+                    </p>
+                </div>
+                <a class="vaultHomeLink" href="index.html">Back to home</a>
+            </div>
+
+            <div class="vaultBrowseHeading">
+                <div>
+                    <p class="sectionLabel">Your curriculum</p>
+                    <h2>Here is a curriculum heading.</h2>
+                </div>
+                <p>
+                    Select a level to reveal its lessons below.
+                </p>
+            </div>
+
+            <div class="vaultSearch">
+                <label for="materialSearch">Search materials</label>
+                <input
+                    id="materialSearch"
+                    type="search"
+                    placeholder="Search by title or keyword"
+                    autocomplete="off">
+                <p id="materialSearchStatus" class="vaultSearchStatus" aria-live="polite"></p>
+            </div>
+
+            <section class="vaultSearchResults" aria-labelledby="materialSearchHeading" hidden>
+                <h2 id="materialSearchHeading">Search results</h2>
+                <div id="materialSearchList"></div>
+            </section>
+
+            <div class="vaultLevels" aria-label="Curriculum levels"></div>
+        </section>
+    </main>
+</body>
+</html>

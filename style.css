@@ -512,6 +512,475 @@ h2 {
     transform: translateY(-0.1rem);
 }
 
+/* ==================== Dictionary Page ==================== */
+
+.dictionaryPage {
+    width: min(100%, 78rem);
+    min-height: calc(100vh - 6rem);
+    margin: 0 auto;
+    padding: 4rem 1.5rem 6rem;
+}
+
+.dictionaryHeader {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+}
+
+.dictionaryHeader h1 {
+    max-width: 46rem;
+    margin: 0 0 1rem;
+}
+
+.dictionaryHeader p:not(.sectionLabel) {
+    max-width: 38rem;
+    margin: 0;
+    color: rgba(27, 31, 30, 0.7);
+}
+
+.dictionaryStatus {
+    flex: 0 0 auto;
+    padding: 0.55rem 0.85rem;
+    border: 1px solid rgba(201, 162, 75, 0.7);
+    border-radius: 999px;
+    color: var(--emerald);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.dictionaryWorkspace {
+    display: grid;
+    grid-template-columns: minmax(12rem, 17rem) minmax(0, 1fr);
+    gap: 2rem;
+    align-items: start;
+}
+
+.dictionaryIndex {
+    position: sticky;
+    top: 1.5rem;
+    padding: 1.25rem;
+    border: 1px solid rgba(15, 76, 69, 0.15);
+    border-radius: 0.75rem;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.dictionaryIndex label {
+    display: block;
+    margin-bottom: 0.45rem;
+    color: var(--emerald);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.dictionaryIndex input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid rgba(15, 76, 69, 0.25);
+    border-radius: 0.45rem;
+    background: rgba(255, 255, 255, 0.8);
+    color: var(--ink);
+    font: 0.9rem var(--Inter);
+}
+
+.dictionaryIndex input:focus {
+    border-color: var(--gold);
+    outline: 2px solid rgba(201, 162, 75, 0.2);
+}
+
+.arabicKeyboard {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    gap: 0.25rem;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid rgba(15, 76, 69, 0.16);
+    border-radius: 0.5rem;
+    background: rgba(247, 241, 227, 0.95);
+}
+
+.arabicKeyboardKey,
+.arabicKeyboardSpace,
+.arabicKeyboardBackspace {
+    width: auto;
+    height: 2rem;
+    padding: 0;
+    border: 1px solid rgba(15, 76, 69, 0.12);
+    border-radius: 0.3rem;
+    background: rgba(255, 255, 255, 0.8);
+    color: var(--emerald);
+    font-family: var(--Amiri);
+    font-size: 1.15rem;
+}
+
+.arabicKeyboardKey:hover,
+.arabicKeyboardSpace:hover,
+.arabicKeyboardBackspace:hover {
+    border-color: var(--gold);
+    background: rgba(201, 162, 75, 0.18);
+}
+
+.arabicKeyboardSpace,
+.arabicKeyboardBackspace {
+    grid-column: span 4;
+    font-family: var(--Inter);
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.dictionarySearchStatus {
+    min-height: 1.1rem;
+    margin: 0.6rem 0 0.75rem;
+    color: rgba(27, 31, 30, 0.6);
+    font-size: 0.75rem;
+}
+
+.dictionaryWordList {
+    display: grid;
+    gap: 0.35rem;
+}
+
+.dictionaryWord {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: auto;
+    padding: 0.75rem;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    background: transparent;
+    color: var(--ink);
+    text-align: right;
+}
+
+.dictionaryWord:hover,
+.dictionaryWordActive {
+    border-color: rgba(201, 162, 75, 0.7);
+    background: rgba(201, 162, 75, 0.12);
+}
+
+.dictionaryWord span,
+.dictionaryArabic,
+.dictionaryArabicSmall,
+.dictionaryRoot {
+    font-family: var(--Amiri);
+}
+
+.dictionaryWord span {
+    color: var(--emerald);
+    font-size: 1.15rem;
+}
+
+.dictionaryWord strong {
+    color: var(--emerald);
+    font-family: var(--Amiri);
+    font-size: 1.45rem;
+    font-weight: 700;
+}
+
+.dictionaryEntry {
+    padding: clamp(1.25rem, 3vw, 2.5rem);
+    border: 1px solid rgba(15, 76, 69, 0.14);
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.62);
+}
+
+.dictionaryEntryHeading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(15, 76, 69, 0.12);
+}
+
+.dictionaryEntryHeading h2 {
+    margin: 0;
+    color: var(--emerald);
+    font-family: var(--Amiri);
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    line-height: 1;
+}
+
+.dictionaryPronunciation {
+    margin: 0.3rem 0 0;
+    color: rgba(27, 31, 30, 0.6);
+    font-size: 0.9rem;
+}
+
+.dictionaryArabic {
+    color: var(--emerald);
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    line-height: 1;
+}
+
+.dictionaryDefinition {
+    padding: 1.5rem 0;
+}
+
+.dictionaryDefinition p,
+.dictionaryCard p {
+    margin: 0.5rem 0 0;
+    color: rgba(27, 31, 30, 0.76);
+}
+
+.dictionaryTranslation {
+    margin: 0.35rem 0 1.25rem !important;
+    color: var(--emerald) !important;
+    font-family: var(--Lora);
+    font-size: clamp(1.7rem, 4vw, 2.5rem);
+    font-weight: 700;
+}
+
+.dictionaryDefinitionLabel {
+    display: block;
+    margin-top: 1rem;
+}
+
+.dictionaryLabel {
+    color: var(--emerald);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.dictionaryDetailGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.dictionaryCard {
+    min-height: 8rem;
+    padding: 1.15rem;
+    border: 1px solid rgba(15, 76, 69, 0.12);
+    border-radius: 0.7rem;
+    background: rgba(247, 241, 227, 0.65);
+}
+
+.dictionaryCardWide {
+    grid-column: span 2;
+}
+
+.dictionaryRoot,
+.dictionaryArabicSmall {
+    margin-top: 0.3rem !important;
+    color: var(--emerald) !important;
+    font-size: 1.7rem;
+}
+
+.dictionaryCard ul {
+    display: grid;
+    gap: 0.45rem;
+    margin: 0.65rem 0 0;
+    padding-left: 1.1rem;
+}
+
+.dictionaryCard li {
+    display: grid;
+    gap: 0.15rem;
+    color: rgba(27, 31, 30, 0.76);
+}
+
+.dictionaryExampleArabic {
+    color: var(--emerald);
+    font-family: var(--Amiri);
+    font-size: 1.2rem;
+}
+
+.dictionaryExampleEnglish {
+    color: rgba(27, 31, 30, 0.68);
+    font-size: 0.9rem;
+}
+
+.dictionaryFormsGrid,
+.dictionaryBaabIdentification,
+.dictionaryDerivedForms {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+}
+
+.dictionaryFormsGrid div,
+.dictionaryBaabIdentification div,
+.dictionaryDerivedForms div {
+    display: grid;
+    gap: 0.2rem;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.55);
+}
+
+.dictionaryFormsGrid small,
+.dictionaryBaabIdentification small,
+.dictionaryDerivedForms small {
+    color: rgba(27, 31, 30, 0.6);
+    font-size: 0.75rem;
+}
+
+.dictionaryFormsGrid strong,
+.dictionaryBaabIdentification strong,
+.dictionaryDerivedForms strong {
+    color: var(--emerald);
+    font-family: var(--Amiri);
+    font-size: 1.35rem;
+}
+
+.dictionaryBaabSummary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 0.75rem;
+}
+
+.dictionaryBaabName {
+    color: var(--emerald);
+    font-family: var(--Amiri);
+    font-size: 1.55rem;
+    font-weight: 700;
+}
+
+.dictionaryBaabSummary p {
+    margin-top: 0.2rem !important;
+}
+
+.dictionaryBaabToggle {
+    flex: 0 0 auto;
+    width: auto;
+    height: auto;
+    padding: 0.65rem 0.9rem;
+    border-color: var(--emerald);
+    background: var(--emerald);
+    color: var(--cream);
+    font-size: 0.8rem;
+}
+
+.dictionaryBaabToggle:hover {
+    border-color: var(--gold);
+    background: var(--gold);
+    color: var(--emerald);
+}
+
+.dictionaryBaabTable {
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(15, 76, 69, 0.12);
+}
+
+.dictionaryTableScroll {
+    margin-top: 1rem;
+    overflow-x: auto;
+}
+
+.dictionaryTableScroll table {
+    width: 100%;
+    min-width: 34rem;
+    border-collapse: collapse;
+}
+
+.dictionaryTableScroll th,
+.dictionaryTableScroll td {
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid rgba(15, 76, 69, 0.1);
+    text-align: left;
+}
+
+.dictionaryTableScroll th {
+    color: var(--emerald);
+    font-size: 0.8rem;
+}
+
+.dictionaryTableScroll td {
+    color: var(--emerald);
+    font-family: var(--Amiri);
+    font-size: 1.2rem;
+}
+
+.dictionaryDerivedForms {
+    margin-top: 1rem;
+}
+
+.dictionaryTrend {
+    height: 0.45rem;
+    margin-top: 1rem;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(15, 76, 69, 0.12);
+}
+
+.dictionaryTrend span {
+    display: block;
+    width: 78%;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--gold);
+}
+
+.dictionarySynonyms {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(15, 76, 69, 0.12);
+}
+
+.dictionaryPills {
+    display: grid;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+.dictionarySynonym {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.15rem 0.75rem;
+    align-items: center;
+    padding: 0.55rem 0.75rem;
+    border: 1px solid rgba(15, 76, 69, 0.18);
+    border-radius: 0.55rem;
+}
+
+.dictionarySynonymWord {
+    color: var(--emerald);
+    font-family: var(--Amiri);
+    font-size: 1.45rem;
+    line-height: 1.2;
+}
+
+.dictionaryPillsEnglish .dictionarySynonymWord {
+    font-family: var(--Inter);
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+.dictionarySynonymScore {
+    color: rgba(27, 31, 30, 0.58);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.dictionaryScoreBar {
+    grid-column: 1 / -1;
+    display: block;
+    height: 0.35rem;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(15, 76, 69, 0.1);
+}
+
+.dictionaryScoreBar span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--gold);
+}
+
 /* ==================== Vault Page ==================== */
 
 .vaultPage {
@@ -851,7 +1320,8 @@ h2 {
 }
 
 .vaultLevelTab:focus-visible,
-.vaultUnitToggle:focus-visible {
+.vaultUnitToggle:focus-visible,
+.vaultTrackToggle:focus-visible {
     outline: 2px solid var(--gold);
     outline-offset: 2px;
 }
@@ -917,7 +1387,63 @@ h2 {
 }
 
 .vaultUnitIsOpen .vaultUnitLessons {
-    max-height: 50rem;
+    visibility: visible;
+    overflow: visible;
+}
+
+.vaultTrack {
+    margin: 0 1rem 0.75rem;
+    border: 1px solid rgba(15, 76, 69, 0.14);
+    border-radius: 0.65rem;
+    background-color: rgba(247, 241, 227, 0.5);
+}
+
+.vaultTrackToggle {
+    width: 100%;
+    min-height: 3.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.8rem 1rem;
+    border: 0;
+    border-radius: 0.65rem;
+    background-color: transparent;
+    color: var(--ink);
+    font: 600 0.95rem var(--Inter);
+    text-align: left;
+}
+
+.vaultTrackToggle:hover {
+    background-color: rgba(201, 162, 75, 0.1);
+}
+
+.vaultTrackToggle strong,
+.vaultTrackToggle small {
+    display: block;
+}
+
+.vaultTrackToggle small {
+    margin-top: 0.2rem;
+    color: rgba(27, 31, 30, 0.58);
+    font-size: 0.75rem;
+    font-weight: 400;
+}
+
+.vaultTrackIsOpen .vaultToggleIcon {
+    transform: rotate(45deg);
+}
+
+.vaultTrackLessons {
+    max-height: 0;
+    margin-left: 0.75rem;
+    border-left: 1px solid rgba(201, 162, 75, 0.35);
+    visibility: hidden;
+    overflow: hidden;
+    transition: max-height 300ms ease, visibility 300ms ease;
+}
+
+.vaultTrackIsOpen .vaultTrackLessons {
     visibility: visible;
     overflow: visible;
 }
@@ -1220,8 +1746,7 @@ h2 {
     gap: 0.35rem;
 }
 
-.materialActions button,
-.materialActions a {
+.materialActions button {
     width: auto;
     height: auto;
     padding: 0.25rem 0.45rem;
@@ -1231,17 +1756,14 @@ h2 {
     color: var(--emerald);
     font-size: 0.7rem;
     font-weight: 600;
-    text-decoration: none;
 }
 
-.materialActions button,
-.materialActions a {
+.materialActions button {
     min-width: 3.5rem;
     text-align: center;
 }
 
-.materialActions button:hover,
-.materialActions a:hover {
+.materialActions button:hover {
     border-color: var(--gold);
     background-color: rgba(201, 162, 75, 0.12);
 }
@@ -1282,6 +1804,14 @@ h2 {
 
     .vaultLessons {
         margin-left: 1rem;
+    }
+
+    .vaultTrack {
+        margin-inline: 0.5rem;
+    }
+
+    .vaultTrackLessons {
+        margin-left: 0.5rem;
     }
 
     .vaultLessonsLabel,
@@ -1720,5 +2250,57 @@ h2 {
 
     .levelCards {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 48rem) {
+    .dictionaryPage {
+        padding: 3rem 1rem 4rem;
+    }
+
+    .dictionaryHeader,
+    .dictionaryEntryHeading {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .dictionaryHeader {
+        gap: 1rem;
+    }
+
+    .dictionaryWorkspace {
+        grid-template-columns: 1fr;
+    }
+
+    .dictionaryIndex {
+        position: static;
+    }
+
+    .dictionaryWordList {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .dictionaryDetailGrid,
+    .dictionarySynonyms {
+        grid-template-columns: 1fr;
+    }
+
+    .dictionaryFormsGrid,
+    .dictionaryBaabIdentification,
+    .dictionaryDerivedForms {
+        grid-template-columns: 1fr;
+    }
+
+    .dictionaryBaabSummary {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .dictionaryCardWide {
+        grid-column: auto;
+    }
+
+    .dictionaryArabic {
+        align-self: flex-end;
     }
 }

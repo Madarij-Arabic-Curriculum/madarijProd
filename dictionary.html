@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dictionary | Madarij</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;600&family=Lora:wght@600;700&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <nav>
+        <div class="navLogo">
+            <a href="index.html" aria-label="Return to Madarij home">
+                <img src="Elements/Full Icon.jpg" alt="Madarij home" width="100">
+            </a>
+        </div>
+
+        <div class="navDropdown">
+            <div class="navLinks">
+                <a href="index.html">How It Works</a>
+                <a href="dictionary.html" aria-current="page">Dictionary</a>
+                <a href="#">Contact</a>
+            </div>
+
+            <div class="navButtonContainer">
+                <a class="navButtonSecondary" href="#">Book a Help Session</a>
+                <a class="navButton" href="vault.html">Enter the Vault</a>
+            </div>
+        </div>
+
+        <div class="hamburgerContainer">
+            <button class="hamburgerButton" type="button" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+        </div>
+    </nav>
+
+    <main class="dictionaryPage">
+        <header class="dictionaryHeader">
+            <div>
+                <p class="sectionLabel">Madarij language reference</p>
+                <h1>Find the meaning behind every word.</h1>
+                <p>Search our growing Arabic dictionary by English word, then explore its roots, context, and connections.</p>
+            </div>
+            <span class="dictionaryStatus">Demo collection</span>
+        </header>
+
+        <section class="dictionaryWorkspace" aria-label="Dictionary">
+            <aside class="dictionaryIndex">
+                <label for="dictionarySearch">Search Arabic words</label>
+                <input id="dictionarySearch" type="search" placeholder="اِبْحَثْ بِالعَرَبِيَّةِ..." autocomplete="off" lang="ar" dir="rtl">
+                <div id="arabicKeyboard" class="arabicKeyboard" hidden aria-label="Arabic keyboard"></div>
+                <p id="dictionarySearchStatus" class="dictionarySearchStatus" aria-live="polite"></p>
+                <div id="dictionaryWordList" class="dictionaryWordList"></div>
+            </aside>
+
+            <article id="dictionaryEntry" class="dictionaryEntry" aria-live="polite"></article>
+        </section>
+    </main>
+</body>
+</html>

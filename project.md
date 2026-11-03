@@ -71,4 +71,8 @@ id, title, level (1-3), order, topic, fileUrl, description
 ## Change Log
 (Newest on top)
 
+- 2026-11-02: Updated script.js and style.css to add a collapsible track/book layer between units and sub-levels, and included tracks in material search paths. This makes each unit ready to hold separate books with their own sub-levels and lessons.
+- 2026-11-02: Added a second Practice Book track to the Foundations unit with separate lessons and materials, making the multiple-track layout visible.
+- 2026-11-02: Renamed the sample tracks and added A third Arabic book plus Maybe an intro book about Seerah to demonstrate four different books in one unit.
+
 - YYYY-MM-DD: Created PROJECT.md. No code yet.

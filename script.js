@@ -579,7 +579,9 @@ const dictionaryWords = [
         examples: [
             { arabic: "هَذَا كِتَابٌ مُفِيدٌ لِلطَّالِبِ.", english: "This is a useful book for the student." },
             { arabic: "قَرَأْتُ كِتَابَيْنِ فِي العُطْلَةِ.", english: "I read two books during the holiday." },
-            { arabic: "وَضَعْتُ الكُتُبَ عَلَى الرَّفِّ.", english: "I put the books on the shelf." }
+            { arabic: "وَضَعْتُ الكُتُبَ عَلَى الرَّفِّ.", english: "I put the books on the shelf." },
+            { arabic: "اشْتَرَيْتُ كِتَابًا جَدِيدًا أَمْسِ.", english: "I bought a new book yesterday." },
+            { arabic: "يَقْرَأُ الطَّالِبُ الكِتَابَ بِاهْتِمَامٍ.", english: "The student reads the book with interest." }
         ],
         trend: "Common in learning, publishing, and everyday conversation.",
         connotations: "Knowledge, study, discovery, and a trusted source of ideas.",
@@ -613,7 +615,9 @@ const dictionaryWords = [
         examples: [
             { arabic: "صَدِيقِي يُسَاعِدُنِي فِي دِرَاسَةِ العَرَبِيَّةِ.", english: "My friend helps me study Arabic." },
             { arabic: "جَاءَ صَدِيقَانِ إِلَى البَيْتِ.", english: "Two friends came to the house." },
-            { arabic: "الأَصْدِقَاءُ يَتَعَاوَنُونَ فِي العَمَلِ.", english: "Friends cooperate at work." }
+            { arabic: "الأَصْدِقَاءُ يَتَعَاوَنُونَ فِي العَمَلِ.", english: "Friends cooperate at work." },
+            { arabic: "اتَّصَلْتُ بِصَدِيقِي بَعْدَ الدِّرَاسَةِ.", english: "I called my friend after studying." },
+            { arabic: "يَحْفَظُ الصَّدِيقُ سِرَّ صَدِيقِهِ.", english: "A friend keeps his friend's secret." }
         ],
         trend: "Frequent in personal stories, introductions, and social conversation.",
         connotations: "Warmth, loyalty, companionship, and belonging.",
@@ -647,7 +651,9 @@ const dictionaryWords = [
         examples: [
             { arabic: "تَذْهَبُ لَيْلَى إِلَى المَدْرَسَةِ كُلَّ يَوْمٍ.", english: "Layla goes to school every day." },
             { arabic: "زَارَتِ المُعَلِّمَةُ مَدْرَسَتَيْنِ جَدِيدَتَيْنِ.", english: "The teacher visited two new schools." },
-            { arabic: "تَفْتَحُ المَدَارِسُ أَبْوَابَهَا فِي الصَّبَاحِ.", english: "Schools open their doors in the morning." }
+            { arabic: "تَفْتَحُ المَدَارِسُ أَبْوَابَهَا فِي الصَّبَاحِ.", english: "Schools open their doors in the morning." },
+            { arabic: "تَقَعُ المَدْرَسَةُ قُرْبَ البَيْتِ.", english: "The school is located near the house." },
+            { arabic: "يَتَعَلَّمُ الطُّلَّابُ فِي المَدْرَسَةِ.", english: "The students learn at school." }
         ],
         trend: "Common in education, family, and community conversations.",
         connotations: "Growth, structure, curiosity, and shared learning.",
@@ -788,6 +794,32 @@ function createDictionaryListItems(items) {
     }).join("");
 }
 
+function createExampleContent(item) {
+    return `
+        ${item.type ? `<span class="dictionaryExampleType" lang="ar" dir="rtl">${escapeHtml(item.type)}</span>` : ""}
+        <span class="dictionaryExampleArabic" lang="ar" dir="rtl">${escapeHtml(item.arabic)}</span>
+        <span class="dictionaryExampleEnglish">${escapeHtml(item.english)}</span>
+    `;
+}
+
+function createExamplesSection(examples) {
+    const mainExample = examples[0];
+    const additionalExamples = examples.slice(1);
+
+    return `
+        <section class="dictionaryCard dictionaryCardWide dictionaryExamplesCard">
+            <span class="dictionaryLabel">Example sentence</span>
+            <div class="dictionaryMainExample">${createExampleContent(mainExample)}</div>
+            <details class="dictionaryExampleMore">
+                <summary>See more examples (${additionalExamples.length})</summary>
+                <ul>${additionalExamples.map(function (item) {
+                    return `<li>${createExampleContent(item)}</li>`;
+                }).join("")}</ul>
+            </details>
+        </section>
+    `;
+}
+
 function createSarfDetails(entry) {
     if (entry.wordType === "Noun") {
         return `
@@ -912,10 +944,7 @@ function renderDictionaryEntry(entry) {
                     <p class="dictionaryArabicDefinition" lang="ar" dir="rtl">${escapeHtml(entry.definitionArabic)}</p>
                 </div>
 
-                <section class="dictionaryCard dictionaryCardWide">
-                    <span class="dictionaryLabel">Example sentences</span>
-                    <ul>${createDictionaryListItems(entry.examples)}</ul>
-                </section>
+                ${createExamplesSection(entry.examples)}
 
                 <details class="dictionaryMore">
                     <summary>Show more</summary>

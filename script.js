@@ -684,10 +684,31 @@ const dictionaryWords = [
             ["أَنْتُمَا (ف)", "عَلَّمْتُمَا", "تُعَلِّمَانِ"]
         ],
         examples: [
-            { arabic: "يُعَلِّمُ الأُسْتَاذُ الطُّلَّابَ القِرَاءَةَ.", english: "The teacher teaches the students to read." },
-            { arabic: "عَلَّمَتْ أُمِّي أُخْتِي الطَّبْخَ.", english: "My mother taught my sister to cook." },
-            { arabic: "نُعَلِّمُ الأَطْفَالَ بِالحُبِّ وَالصَّبْرِ.", english: "We teach children with love and patience." },
-            { arabic: "سَوْفَ يُعَلِّمُنَا هَذَا الدَّرْسُ مَعْنًى جَدِيدًا.", english: "This lesson will teach us a new meaning." }
+            {
+                type: "مَفْعُولٌ بِهِ",
+                arabic: "يُعَلِّمُ الأُسْتَاذُ الطُّلَّابَ القِرَاءَةَ.",
+                english: "The male teacher teaches the students to read."
+            },
+            {
+                type: "مَفْعُولٌ مُطْلَقٌ",
+                arabic: "تُعَلِّمُ الأُسْتَاذَةُ الطُّلَّابَ تَعْلِيمًا مُفِيدًا.",
+                english: "The female teacher teaches the students a useful lesson."
+            },
+            {
+                type: "مَفْعُولٌ فِيهِ",
+                arabic: "يُعَلِّمُ المُدِيرُ الطُّلَّابَ صَبَاحًا.",
+                english: "The principal teaches the students in the morning."
+            },
+            {
+                type: "مَفْعُولٌ مَعَهُ",
+                arabic: "يُعَلِّمُ المُدَرِّبُ اللَّاعِبِينَ مَعَ زَمِيلِهِ.",
+                english: "The coach teaches the players together with his colleague."
+            },
+            {
+                type: "مَفْعُولٌ لِأَجْلِهِ",
+                arabic: "يُعَلِّمُ الأَبُ أَوْلَادَهُ حُبًّا لِلْعِلْمِ.",
+                english: "The father teaches his children out of love for knowledge."
+            }
         ],
         trend: "Frequent in education, mentoring, training, and family conversations.",
         connotations: "Growth, guidance, generosity, and passing knowledge forward.",
@@ -739,6 +760,7 @@ function createDictionaryListItems(items) {
     return items.map(function (item) {
         return `
             <li>
+                ${item.type ? `<span class="dictionaryExampleType" lang="ar" dir="rtl">${escapeHtml(item.type)}</span>` : ""}
                 <span class="dictionaryExampleArabic" lang="ar" dir="rtl">${escapeHtml(item.arabic)}</span>
                 <span class="dictionaryExampleEnglish">${escapeHtml(item.english)}</span>
             </li>

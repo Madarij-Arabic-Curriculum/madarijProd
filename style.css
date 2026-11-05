@@ -791,6 +791,13 @@ h2 {
     font-size: 1.2rem;
 }
 
+.dictionaryExampleType {
+    color: #98752d;
+    font-family: var(--Amiri);
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
 .dictionaryExampleEnglish {
     color: rgba(27, 31, 30, 0.68);
     font-size: 0.9rem;

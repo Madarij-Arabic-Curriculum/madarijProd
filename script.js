@@ -1080,7 +1080,11 @@ if (dictionarySearch && dictionaryWordList && dictionaryEntry) {
         table.hidden = false;
         tableToggle.setAttribute("aria-expanded", "true");
         tableToggle.textContent = "Hide Baab table";
-        dictionaryEntry.querySelector(".dictionaryMore").open = true;
+        const moreSection = dictionaryEntry.querySelector(".dictionaryMore");
+        moreSection.open = true;
+        window.requestAnimationFrame(function () {
+            moreSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
     });
 
     dictionaryEntry.addEventListener("keydown", function (event) {

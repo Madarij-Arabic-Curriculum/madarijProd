@@ -688,9 +688,9 @@ h2 {
 }
 
 .dictionaryEntryHeading {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
-    justify-content: space-between;
     gap: 1.5rem;
     padding-bottom: 1.5rem;
     border-bottom: 1px solid rgba(15, 76, 69, 0.12);
@@ -767,7 +767,7 @@ h2 {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 0.75rem;
-    margin-bottom: 1.5rem;
+    margin: 0;
 }
 
 .dictionaryQuickCard {
@@ -2411,6 +2411,11 @@ h2 {
     .dictionaryEntryHeading {
         flex-direction: column;
         align-items: flex-start;
+    }
+
+    .dictionaryEntryHeading {
+        display: grid;
+        grid-template-columns: 1fr;
     }
 
     .dictionaryHeader {

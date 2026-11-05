@@ -884,47 +884,48 @@ function createSarfDetails(entry) {
 function renderDictionaryEntry(entry) {
     dictionaryEntry.innerHTML = `
                 <div class="dictionaryEntryHeading">
-                    <div>
-                        <p class="sectionLabel">Dictionary entry</p>
-                        <p class="dictionaryPronunciation">${escapeHtml(entry.wordType)}</p>
-                    </div>
+                    <section class="dictionaryQuickDetails">
+                        <div class="dictionaryQuickCard">
+                            <span class="dictionaryLabel">Root</span>
+                            <strong class="dictionaryRoot" lang="ar" dir="rtl">${escapeHtml(entry.root)}</strong>
+                        </div>
+                        ${entry.wordType === "Noun"
+        ? `
+                        <div class="dictionaryQuickCard">
+                            <span class="dictionaryLabel">Singular</span>
+                            <strong class="dictionaryArabicSmall" lang="ar" dir="rtl">${escapeHtml(entry.nounForms.singular)}</strong>
+                        </div>
+                        <div class="dictionaryQuickCard">
+                            <span class="dictionaryLabel">Dual</span>
+                            <strong class="dictionaryArabicSmall" lang="ar" dir="rtl">${escapeHtml(entry.nounForms.dual)}</strong>
+                        </div>
+                        <div class="dictionaryQuickCard">
+                            <span class="dictionaryLabel">Plural</span>
+                            <strong class="dictionaryArabicSmall" lang="ar" dir="rtl">${escapeHtml(entry.nounForms.plural)}</strong>
+                        </div>
+                        `
+        : `
+                        <div class="dictionaryQuickCard">
+                            <span class="dictionaryLabel">مَاضٍ</span>
+                            <strong class="dictionaryArabicSmall" lang="ar" dir="rtl">${escapeHtml(entry.verbForms.madi)}</strong>
+                        </div>
+                        <div class="dictionaryQuickCard">
+                            <span class="dictionaryLabel">مُضَارِع</span>
+                            <strong class="dictionaryArabicSmall" lang="ar" dir="rtl">${escapeHtml(entry.verbForms.mudari)}</strong>
+                        </div>
+                        <div class="dictionaryQuickCard">
+                            <span class="dictionaryLabel">مَصْدَر</span>
+                            <strong class="dictionaryArabicSmall" lang="ar" dir="rtl">${escapeHtml(entry.verbForms.masdar)}</strong>
+                        </div>
+                        `}
+                    </section>
                     <div class="dictionaryHeadword" dir="rtl">
+                        <p class="sectionLabel">Dictionary entry</p>
                         <span class="dictionaryArabic" lang="ar">${escapeHtml(entry.arabic)}</span>
                         <span class="dictionaryEnglishHeadword" dir="ltr">${escapeHtml(entry.word)}</span>
+                        <p class="dictionaryPronunciation" dir="ltr">${escapeHtml(entry.wordType)}</p>
                     </div>
                 </div>
-
-                <section class="dictionaryQuickDetails">
-                    <div class="dictionaryQuickCard">
-                        <span class="dictionaryLabel">Root</span>
-                        <strong class="dictionaryRoot" lang="ar" dir="rtl">${escapeHtml(entry.root)}</strong>
-                    </div>
-                    ${entry.wordType === "Noun"
-        ? `
-                    <div class="dictionaryQuickCard">
-                        <span class="dictionaryLabel">Singular</span>
-                        <strong class="dictionaryArabicSmall" lang="ar" dir="rtl">${escapeHtml(entry.nounForms.singular)}</strong>
-                    </div>
-                    <div class="dictionaryQuickCard">
-                        <span class="dictionaryLabel">Dual</span>
-                        <strong class="dictionaryArabicSmall" lang="ar" dir="rtl">${escapeHtml(entry.nounForms.dual)}</strong>
-                    </div>
-                    <div class="dictionaryQuickCard">
-                        <span class="dictionaryLabel">Plural</span>
-                        <strong class="dictionaryArabicSmall" lang="ar" dir="rtl">${escapeHtml(entry.nounForms.plural)}</strong>
-                    </div>
-                    `
-        : `
-                    <div class="dictionaryQuickCard">
-                        <span class="dictionaryLabel">مَاضٍ</span>
-                        <strong class="dictionaryArabicSmall" lang="ar" dir="rtl">${escapeHtml(entry.verbForms.madi)}</strong>
-                    </div>
-                    <div class="dictionaryQuickCard">
-                        <span class="dictionaryLabel">مُضَارِع</span>
-                        <strong class="dictionaryArabicSmall" lang="ar" dir="rtl">${escapeHtml(entry.verbForms.mudari)}</strong>
-                    </div>
-                    `}
-                </section>
 
                 <div class="dictionaryDefinition">
                     <span class="dictionaryLabel">English meanings and synonyms</span>

@@ -765,7 +765,7 @@ h2 {
 
 .dictionaryQuickDetails {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.75rem;
     margin: 0;
 }
@@ -787,6 +787,17 @@ h2 {
 
 .dictionaryQuickCard .dictionaryRoot {
     font-size: 1.5rem;
+}
+
+.dictionaryQuickCardClickable {
+    cursor: pointer;
+}
+
+.dictionaryQuickCardClickable:hover,
+.dictionaryQuickCardClickable:focus-visible {
+    border-color: var(--gold);
+    background: rgba(201, 162, 75, 0.16);
+    outline: none;
 }
 
 .dictionaryMore {

@@ -885,7 +885,7 @@ function renderDictionaryEntry(entry) {
     dictionaryEntry.innerHTML = `
                 <div class="dictionaryEntryHeading">
                     <section class="dictionaryQuickDetails">
-                        <div class="dictionaryQuickCard">
+                        <div class="dictionaryQuickCard${entry.wordType === "Verb" ? " dictionaryQuickCardClickable" : ""}"${entry.wordType === "Verb" ? ' role="button" tabindex="0" data-open-baab="true" aria-label="Open full Baab table"' : ""}>
                             <span class="dictionaryLabel">Root</span>
                             <strong class="dictionaryRoot" lang="ar" dir="rtl">${escapeHtml(entry.root)}</strong>
                         </div>
@@ -905,15 +905,15 @@ function renderDictionaryEntry(entry) {
                         </div>
                         `
         : `
-                        <div class="dictionaryQuickCard">
+                        <div class="dictionaryQuickCard dictionaryQuickCardClickable" role="button" tabindex="0" data-open-baab="true" aria-label="Open full Baab table">
                             <span class="dictionaryLabel">مَاضٍ</span>
                             <strong class="dictionaryArabicSmall" lang="ar" dir="rtl">${escapeHtml(entry.verbForms.madi)}</strong>
                         </div>
-                        <div class="dictionaryQuickCard">
+                        <div class="dictionaryQuickCard dictionaryQuickCardClickable" role="button" tabindex="0" data-open-baab="true" aria-label="Open full Baab table">
                             <span class="dictionaryLabel">مُضَارِع</span>
                             <strong class="dictionaryArabicSmall" lang="ar" dir="rtl">${escapeHtml(entry.verbForms.mudari)}</strong>
                         </div>
-                        <div class="dictionaryQuickCard">
+                        <div class="dictionaryQuickCard dictionaryQuickCardClickable" role="button" tabindex="0" data-open-baab="true" aria-label="Open full Baab table">
                             <span class="dictionaryLabel">مَصْدَر</span>
                             <strong class="dictionaryArabicSmall" lang="ar" dir="rtl">${escapeHtml(entry.verbForms.masdar)}</strong>
                         </div>
@@ -1069,16 +1069,32 @@ if (dictionarySearch && dictionaryWordList && dictionaryEntry) {
     });
 
     dictionaryEntry.addEventListener("click", function (event) {
+        const quickCard = event.target.closest("[data-open-baab]");
         const baabToggle = event.target.closest(".dictionaryBaabToggle");
-        if (!baabToggle) {
+        if (!quickCard && !baabToggle) {
             return;
         }
 
         const table = dictionaryEntry.querySelector(".dictionaryBaabTable");
-        const isOpen = !table.hidden;
-        table.hidden = isOpen;
-        baabToggle.setAttribute("aria-expanded", String(!isOpen));
-        baabToggle.textContent = isOpen ? "View full Baab table" : "Hide Baab table";
+        const tableToggle = dictionaryEntry.querySelector(".dictionaryBaabToggle");
+        table.hidden = false;
+        tableToggle.setAttribute("aria-expanded", "true");
+        tableToggle.textContent = "Hide Baab table";
+        dictionaryEntry.querySelector(".dictionaryMore").open = true;
+    });
+
+    dictionaryEntry.addEventListener("keydown", function (event) {
+        if (event.key !== "Enter" && event.key !== " ") {
+            return;
+        }
+
+        const quickCard = event.target.closest("[data-open-baab]");
+        if (!quickCard) {
+            return;
+        }
+
+        event.preventDefault();
+        quickCard.click();
     });
 }
 

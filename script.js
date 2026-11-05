@@ -796,6 +796,7 @@ function createSarfDetails(entry) {
                 <div class="dictionaryFormsGrid">
                     <div><small>Singular</small><strong lang="ar" dir="rtl">${escapeHtml(entry.nounForms.singular)}</strong></div>
                     <div><small>Dual</small><strong lang="ar" dir="rtl">${escapeHtml(entry.nounForms.dual)}</strong></div>
+                    <div><small>Plural</small><strong lang="ar" dir="rtl">${escapeHtml(entry.nounForms.plural)}</strong></div>
                 </div>
             </section>
         `;
@@ -856,15 +857,45 @@ function renderDictionaryEntry(entry) {
                         <p class="dictionaryPronunciation">${escapeHtml(entry.wordType)}</p>
                     </div>
                     <div class="dictionaryHeadword" dir="rtl">
-                        <span class="dictionaryEnglishHeadword" dir="ltr">${escapeHtml(entry.word)}</span>
                         <span class="dictionaryArabic" lang="ar">${escapeHtml(entry.arabic)}</span>
+                        <span class="dictionaryEnglishHeadword" dir="ltr">${escapeHtml(entry.word)}</span>
                     </div>
                 </div>
 
+                <section class="dictionaryQuickDetails">
+                    <div class="dictionaryQuickCard">
+                        <span class="dictionaryLabel">Root</span>
+                        <strong class="dictionaryRoot" lang="ar" dir="rtl">${escapeHtml(entry.root)}</strong>
+                    </div>
+                    ${entry.wordType === "Noun"
+        ? `
+                    <div class="dictionaryQuickCard">
+                        <span class="dictionaryLabel">Singular</span>
+                        <strong class="dictionaryArabicSmall" lang="ar" dir="rtl">${escapeHtml(entry.nounForms.singular)}</strong>
+                    </div>
+                    <div class="dictionaryQuickCard">
+                        <span class="dictionaryLabel">Dual</span>
+                        <strong class="dictionaryArabicSmall" lang="ar" dir="rtl">${escapeHtml(entry.nounForms.dual)}</strong>
+                    </div>
+                    <div class="dictionaryQuickCard">
+                        <span class="dictionaryLabel">Plural</span>
+                        <strong class="dictionaryArabicSmall" lang="ar" dir="rtl">${escapeHtml(entry.nounForms.plural)}</strong>
+                    </div>
+                    `
+        : `
+                    <div class="dictionaryQuickCard">
+                        <span class="dictionaryLabel">مَاضٍ</span>
+                        <strong class="dictionaryArabicSmall" lang="ar" dir="rtl">${escapeHtml(entry.verbForms.madi)}</strong>
+                    </div>
+                    <div class="dictionaryQuickCard">
+                        <span class="dictionaryLabel">مُضَارِع</span>
+                        <strong class="dictionaryArabicSmall" lang="ar" dir="rtl">${escapeHtml(entry.verbForms.mudari)}</strong>
+                    </div>
+                    `}
+                </section>
+
                 <div class="dictionaryDefinition">
-                    <span class="dictionaryLabel">Definition in simple Arabic</span>
-                    <p class="dictionaryArabicDefinition" lang="ar" dir="rtl">${escapeHtml(entry.definitionArabic)}</p>
-                    <span class="dictionaryLabel dictionaryDefinitionLabel">Meanings and English synonyms</span>
+                    <span class="dictionaryLabel">English meanings and synonyms</span>
                     <div class="dictionaryMeanings">
                         ${entry.meanings.map(function (item, index) {
                             return `
@@ -877,59 +908,68 @@ function renderDictionaryEntry(entry) {
                             `;
                         }).join("")}
                     </div>
+                    <span class="dictionaryLabel dictionaryDefinitionLabel">Definition in simple Arabic</span>
+                    <p class="dictionaryArabicDefinition" lang="ar" dir="rtl">${escapeHtml(entry.definitionArabic)}</p>
                 </div>
 
-                <div class="dictionaryDetailGrid">
-                    <section class="dictionaryCard">
-                        <span class="dictionaryLabel">Root</span>
-                        <p class="dictionaryRoot" lang="ar" dir="rtl">${escapeHtml(entry.root)}</p>
-                    </section>
-                    ${createSarfDetails(entry)}
-                    <section class="dictionaryCard dictionaryCardWide">
-                        <span class="dictionaryLabel">Example sentences</span>
-                        <ul>${createDictionaryListItems(entry.examples)}</ul>
-                    </section>
-                    <section class="dictionaryCard">
-                        <span class="dictionaryLabel">Usage trends</span>
-                        <p>${escapeHtml(entry.trend)}</p>
-                        <div class="dictionaryTrend" aria-label="High usage trend"><span></span></div>
-                    </section>
-                    <section class="dictionaryCard">
-                        <span class="dictionaryLabel">Usage connotations</span>
-                        <p>${escapeHtml(entry.connotations)}</p>
-                    </section>
-                </div>
+                <section class="dictionaryCard dictionaryCardWide">
+                    <span class="dictionaryLabel">Example sentences</span>
+                    <ul>${createDictionaryListItems(entry.examples)}</ul>
+                </section>
 
-                <div class="dictionarySynonyms">
-                    <section>
-                        <span class="dictionaryLabel">Synonyms in Arabic</span>
-                        <div class="dictionaryPills" lang="ar" dir="rtl">
-                            ${entry.arabicSynonyms.map(function (item) {
-                                return `
-                                    <div class="dictionarySynonym">
-                                        <span class="dictionarySynonymWord">${escapeHtml(item.word)}</span>
-                                        <span class="dictionarySynonymScore">${item.score}%</span>
-                                        <span class="dictionaryScoreBar"><span style="width: ${item.score}%"></span></span>
-                                    </div>
-                                `;
-                            }).join("")}
+                <details class="dictionaryMore">
+                    <summary>Show more</summary>
+                    <div class="dictionaryMoreContent">
+                        <div class="dictionaryDetailGrid">
+                            <section class="dictionaryCard">
+                                <span class="dictionaryLabel">Root</span>
+                                <p class="dictionaryRoot" lang="ar" dir="rtl">${escapeHtml(entry.root)}</p>
+                            </section>
+                            ${createSarfDetails(entry)}
                         </div>
-                    </section>
-                    <section>
-                        <span class="dictionaryLabel">Synonyms in English</span>
-                        <div class="dictionaryPills dictionaryPillsEnglish">
-                            ${entry.englishSynonyms.map(function (item) {
-                                return `
-                                    <div class="dictionarySynonym">
-                                        <span class="dictionarySynonymWord">${escapeHtml(item.word)}</span>
-                                        <span class="dictionarySynonymScore">${item.score}%</span>
-                                        <span class="dictionaryScoreBar"><span style="width: ${item.score}%"></span></span>
-                                    </div>
-                                `;
-                            }).join("")}
+                        <div class="dictionaryDetailGrid">
+                            <section class="dictionaryCard">
+                                <span class="dictionaryLabel">Usage trends</span>
+                                <p>${escapeHtml(entry.trend)}</p>
+                                <div class="dictionaryTrend" aria-label="High usage trend"><span></span></div>
+                            </section>
+                            <section class="dictionaryCard">
+                                <span class="dictionaryLabel">Usage connotations</span>
+                                <p>${escapeHtml(entry.connotations)}</p>
+                            </section>
                         </div>
-                    </section>
-                </div>
+                    </div>
+                    <div class="dictionarySynonyms">
+                        <section>
+                            <span class="dictionaryLabel">Synonyms in Arabic</span>
+                            <div class="dictionaryPills" lang="ar" dir="rtl">
+                                ${entry.arabicSynonyms.map(function (item) {
+                                    return `
+                                        <div class="dictionarySynonym">
+                                            <span class="dictionarySynonymWord">${escapeHtml(item.word)}</span>
+                                            <span class="dictionarySynonymScore">${item.score}%</span>
+                                            <span class="dictionaryScoreBar"><span style="width: ${item.score}%"></span></span>
+                                        </div>
+                                    `;
+                                }).join("")}
+                            </div>
+                        </section>
+                        <section>
+                            <span class="dictionaryLabel">Synonyms in English</span>
+                            <div class="dictionaryPills dictionaryPillsEnglish">
+                                ${entry.englishSynonyms.map(function (item) {
+                                    return `
+                                        <div class="dictionarySynonym">
+                                            <span class="dictionarySynonymWord">${escapeHtml(item.word)}</span>
+                                            <span class="dictionarySynonymScore">${item.score}%</span>
+                                            <span class="dictionaryScoreBar"><span style="width: ${item.score}%"></span></span>
+                                        </div>
+                                    `;
+                                }).join("")}
+                            </div>
+                        </section>
+                    </div>
+                </details>
     `;
 }
 

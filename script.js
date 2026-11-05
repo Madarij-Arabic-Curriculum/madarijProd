@@ -569,7 +569,12 @@ const dictionaryWords = [
         arabic: "كِتَاب",
         wordType: "Noun",
         root: "ك ت ب",
-        definition: "A written or printed work made of pages, or the idea of reading and learning from one.",
+        definitionArabic: "مَجْمُوعَةٌ مِنَ الصَّفَحَاتِ تَحْمِلُ مَعْلُومَاتٍ أَوْ قِصَّةً.",
+        meanings: [
+            { meaning: "A written work", synonyms: ["text", "volume", "publication"] },
+            { meaning: "A set of pages", synonyms: ["volume", "tome", "work"] },
+            { meaning: "A source of knowledge", synonyms: ["reference", "resource", "guide"] }
+        ],
         nounForms: { singular: "كِتَابٌ", dual: "كِتَابَانِ", plural: "كُتُبٌ" },
         examples: [
             { arabic: "هَذَا كِتَابٌ مُفِيدٌ لِلطَّالِبِ.", english: "This is a useful book for the student." },
@@ -598,7 +603,12 @@ const dictionaryWords = [
         arabic: "صَدِيق",
         wordType: "Noun",
         root: "ص د ق",
-        definition: "A person with whom one shares affection, trust, and mutual support.",
+        definitionArabic: "شَخْصٌ نُحِبُّهُ وَنَثِقُ بِهِ وَنَتَعَاوَنُ مَعَهُ.",
+        meanings: [
+            { meaning: "A close companion", synonyms: ["companion", "pal", "mate"] },
+            { meaning: "A trusted person", synonyms: ["ally", "confidant", "supporter"] },
+            { meaning: "A person who gives support", synonyms: ["helper", "associate", "friend"] }
+        ],
         nounForms: { singular: "صَدِيقٌ", dual: "صَدِيقَانِ", plural: "أَصْدِقَاءُ" },
         examples: [
             { arabic: "صَدِيقِي يُسَاعِدُنِي فِي دِرَاسَةِ العَرَبِيَّةِ.", english: "My friend helps me study Arabic." },
@@ -627,7 +637,12 @@ const dictionaryWords = [
         arabic: "مَدْرَسَة",
         wordType: "Noun",
         root: "د ر س",
-        definition: "A place or community where people learn, study, and develop skills.",
+        definitionArabic: "مَكَانٌ يَذْهَبُ إِلَيْهِ النَّاسُ لِلتَّعَلُّمِ وَالدِّرَاسَةِ.",
+        meanings: [
+            { meaning: "A place for learning", synonyms: ["academy", "institute", "learning center"] },
+            { meaning: "An educational community", synonyms: ["institution", "school", "academy"] },
+            { meaning: "A place for studying", synonyms: ["campus", "classroom", "institute"] }
+        ],
         nounForms: { singular: "مَدْرَسَةٌ", dual: "مَدْرَسَتَانِ", plural: "مَدَارِسُ" },
         examples: [
             { arabic: "تَذْهَبُ لَيْلَى إِلَى المَدْرَسَةِ كُلَّ يَوْمٍ.", english: "Layla goes to school every day." },
@@ -656,7 +671,12 @@ const dictionaryWords = [
         arabic: "عَلَّمَ",
         wordType: "Verb",
         root: "ع ل م",
-        definition: "To help someone gain knowledge or a skill through instruction.",
+        definitionArabic: "أَنْ تُسَاعِدَ شَخْصًا عَلَى مَعْرِفَةِ شَيْءٍ أَوْ إِتْقَانِ مَهَارَةٍ.",
+        meanings: [
+            { meaning: "To give someone knowledge", synonyms: ["educate", "instruct", "inform"] },
+            { meaning: "To help someone learn a skill", synonyms: ["train", "coach", "teach"] },
+            { meaning: "To guide someone through instruction", synonyms: ["mentor", "guide", "train"] }
+        ],
         verbForms: {
             baab: "بَابُ التَّفْعِيلِ",
             madi: "عَلَّمَ",
@@ -835,14 +855,28 @@ function renderDictionaryEntry(entry) {
                         <p class="sectionLabel">Dictionary entry</p>
                         <p class="dictionaryPronunciation">${escapeHtml(entry.wordType)}</p>
                     </div>
-                    <div class="dictionaryArabic" lang="ar" dir="rtl">${escapeHtml(entry.arabic)}</div>
+                    <div class="dictionaryHeadword" dir="rtl">
+                        <span class="dictionaryEnglishHeadword" dir="ltr">${escapeHtml(entry.word)}</span>
+                        <span class="dictionaryArabic" lang="ar">${escapeHtml(entry.arabic)}</span>
+                    </div>
                 </div>
 
                 <div class="dictionaryDefinition">
-                    <span class="dictionaryLabel">English translation</span>
-                    <p class="dictionaryTranslation">${escapeHtml(entry.word)}</p>
-                    <span class="dictionaryLabel dictionaryDefinitionLabel">Definition</span>
-                    <p>${escapeHtml(entry.definition)}</p>
+                    <span class="dictionaryLabel">Definition in simple Arabic</span>
+                    <p class="dictionaryArabicDefinition" lang="ar" dir="rtl">${escapeHtml(entry.definitionArabic)}</p>
+                    <span class="dictionaryLabel dictionaryDefinitionLabel">Meanings and English synonyms</span>
+                    <div class="dictionaryMeanings">
+                        ${entry.meanings.map(function (item, index) {
+                            return `
+                                <div class="dictionaryMeaning">
+                                    <strong>${index + 1}. ${escapeHtml(item.meaning)}</strong>
+                                    <span>${item.synonyms.map(function (synonym) {
+                                        return escapeHtml(synonym);
+                                    }).join(", ")}</span>
+                                </div>
+                            `;
+                        }).join("")}
+                    </div>
                 </div>
 
                 <div class="dictionaryDetailGrid">

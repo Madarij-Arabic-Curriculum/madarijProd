@@ -711,9 +711,25 @@ h2 {
 }
 
 .dictionaryArabic {
+    display: block;
     color: var(--emerald);
     font-size: clamp(2.5rem, 7vw, 5rem);
     line-height: 1;
+}
+
+.dictionaryHeadword {
+    display: grid;
+    justify-items: end;
+    gap: 0.15rem;
+    text-align: right;
+}
+
+.dictionaryEnglishHeadword {
+    color: var(--emerald);
+    font-family: var(--Lora);
+    font-size: clamp(1.35rem, 3vw, 2rem);
+    font-weight: 700;
+    line-height: 1.2;
 }
 
 .dictionaryDefinition {
@@ -734,9 +750,43 @@ h2 {
     font-weight: 700;
 }
 
+.dictionaryArabicDefinition {
+    margin: 0.5rem 0 1.25rem !important;
+    color: var(--emerald) !important;
+    font-family: var(--Amiri);
+    font-size: clamp(1.35rem, 3vw, 1.8rem);
+    line-height: 1.7;
+}
+
 .dictionaryDefinitionLabel {
     display: block;
     margin-top: 1rem;
+}
+
+.dictionaryMeanings {
+    display: grid;
+    gap: 0.6rem;
+    margin-top: 0.75rem;
+}
+
+.dictionaryMeaning {
+    display: grid;
+    gap: 0.15rem;
+    padding: 0.8rem 1rem;
+    border-left: 0.25rem solid var(--gold);
+    border-radius: 0.45rem;
+    background: rgba(247, 241, 227, 0.7);
+}
+
+.dictionaryMeaning strong {
+    color: var(--emerald);
+    font-family: var(--Lora);
+    font-size: 1.05rem;
+}
+
+.dictionaryMeaning span {
+    color: rgba(27, 31, 30, 0.68);
+    font-size: 0.95rem;
 }
 
 .dictionaryLabel {

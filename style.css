@@ -1092,43 +1092,50 @@ h2 {
 
 .dictionaryPills {
     display: grid;
-    gap: 0.5rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.45rem;
     margin-top: 0.75rem;
 }
 
 .dictionarySynonym {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
-    gap: 0.15rem 0.75rem;
+    gap: 0.1rem 0.4rem;
     align-items: center;
-    padding: 0.55rem 0.75rem;
+    min-width: 0;
+    padding: 0.45rem 0.55rem;
     border: 1px solid rgba(15, 76, 69, 0.18);
     border-radius: 0.55rem;
 }
 
 .dictionarySynonymWord {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     color: var(--emerald);
     font-family: var(--Amiri);
-    font-size: 1.45rem;
-    line-height: 1.8;
+    font-size: 1.2rem;
+    line-height: 1.65;
 }
 
 .dictionaryPillsEnglish .dictionarySynonymWord {
     font-family: var(--Inter);
-    font-size: 1.05rem;
+    font-size: 0.9rem;
     font-weight: 600;
 }
 
-.dictionarySynonymScore {
+.dictionarySynonymMeta {
     color: rgba(27, 31, 30, 0.58);
-    font-size: 0.75rem;
+    font-size: 0.65rem;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .dictionaryScoreBar {
     grid-column: 1 / -1;
     display: block;
-    height: 0.35rem;
+    height: 0.25rem;
     overflow: hidden;
     border-radius: 999px;
     background: rgba(15, 76, 69, 0.1);
@@ -2447,6 +2454,10 @@ h2 {
 
     .dictionaryDetailGrid,
     .dictionarySynonyms {
+        grid-template-columns: 1fr;
+    }
+
+    .dictionaryPills {
         grid-template-columns: 1fr;
     }
 

@@ -590,14 +590,20 @@ const dictionaryWords = [
             { word: "مَجْمُوعَة", score: 72 },
             { word: "مُجَلَّد", score: 84 },
             { word: "سِفْر", score: 68 },
-            { word: "مَنْشُور", score: 61 }
+            { word: "مَنْشُور", score: 61 },
+            { word: "مَرْجِع", score: 58 },
+            { word: "مُصَنَّف", score: 55 },
+            { word: "كُرَّاس", score: 48 }
         ],
         englishSynonyms: [
             { word: "volume", score: 95 },
             { word: "text", score: 84 },
             { word: "publication", score: 76 },
             { word: "work", score: 69 },
-            { word: "tome", score: 63 }
+            { word: "tome", score: 63 },
+            { word: "reference", score: 58 },
+            { word: "manuscript", score: 52 },
+            { word: "reader", score: 46 }
         ]
     },
     {
@@ -626,14 +632,20 @@ const dictionaryWords = [
             { word: "صَاحِب", score: 90 },
             { word: "خَلِيل", score: 82 },
             { word: "زَمِيل", score: 71 },
-            { word: "قَرِين", score: 65 }
+            { word: "قَرِين", score: 65 },
+            { word: "رَفِيقُ دَرْبٍ", score: 59 },
+            { word: "مُصَاحِب", score: 54 },
+            { word: "وَلِيّ", score: 47 }
         ],
         englishSynonyms: [
             { word: "companion", score: 94 },
             { word: "pal", score: 91 },
             { word: "ally", score: 78 },
             { word: "associate", score: 69 },
-            { word: "acquaintance", score: 52 }
+            { word: "acquaintance", score: 52 },
+            { word: "colleague", score: 49 },
+            { word: "mate", score: 46 },
+            { word: "supporter", score: 42 }
         ]
     },
     {
@@ -662,14 +674,20 @@ const dictionaryWords = [
             { word: "مَدْرَس", score: 81 },
             { word: "كُلِّيَّة", score: 64 },
             { word: "جَامِعَة", score: 58 },
-            { word: "مَرْكَزٌ تَعْلِيمِيٌّ", score: 55 }
+            { word: "مَرْكَزٌ تَعْلِيمِيٌّ", score: 55 },
+            { word: "مَعْلَم", score: 49 },
+            { word: "مَرْكَزُ دِرَاسَةٍ", score: 45 },
+            { word: "حَلْقَة", score: 39 }
         ],
         englishSynonyms: [
             { word: "academy", score: 88 },
             { word: "institute", score: 84 },
             { word: "educational center", score: 72 },
             { word: "academy", score: 67 },
-            { word: "learning center", score: 63 }
+            { word: "learning center", score: 63 },
+            { word: "campus", score: 55 },
+            { word: "classroom", score: 48 },
+            { word: "faculty", score: 43 }
         ]
     },
     {
@@ -743,14 +761,20 @@ const dictionaryWords = [
             { word: "أَرْشَدَ", score: 78 },
             { word: "لَقَّنَ", score: 73 },
             { word: "هَذَّبَ", score: 61 },
-            { word: "وَجَّهَ", score: 58 }
+            { word: "وَجَّهَ", score: 58 },
+            { word: "أَفْهَمَ", score: 53 },
+            { word: "دَرَّبَ", score: 49 },
+            { word: "نَصَحَ", score: 42 }
         ],
         englishSynonyms: [
             { word: "educate", score: 94 },
             { word: "instruct", score: 91 },
             { word: "train", score: 82 },
             { word: "coach", score: 76 },
-            { word: "mentor", score: 67 }
+            { word: "mentor", score: 67 },
+            { word: "tutor", score: 61 },
+            { word: "prepare", score: 53 },
+            { word: "show", score: 44 }
         ]
     }
 ].sort(function (first, second) {
@@ -818,6 +842,36 @@ function createExamplesSection(examples) {
             </details>
         </section>
     `;
+}
+
+function getSynonymMatchLabel(score) {
+    if (score >= 85) {
+        return "Very close";
+    }
+
+    if (score >= 65) {
+        return "Close";
+    }
+
+    if (score >= 50) {
+        return "Related";
+    }
+
+    return "Broader";
+}
+
+function createSynonymList(items) {
+    return items.map(function (item) {
+        return `
+            <div class="dictionarySynonym">
+                <span class="dictionarySynonymWord">${escapeHtml(item.word)}</span>
+                <span class="dictionarySynonymMeta">${getSynonymMatchLabel(item.score)} · ${item.score}%</span>
+                <span class="dictionaryScoreBar" aria-label="${getSynonymMatchLabel(item.score)} match, ${item.score}%">
+                    <span style="width: ${item.score}%"></span>
+                </span>
+            </div>
+        `;
+    }).join("");
 }
 
 function createSarfDetails(entry) {
@@ -973,29 +1027,13 @@ function renderDictionaryEntry(entry) {
                         <section>
                             <span class="dictionaryLabel">Synonyms in Arabic</span>
                             <div class="dictionaryPills" lang="ar" dir="rtl">
-                                ${entry.arabicSynonyms.map(function (item) {
-                                    return `
-                                        <div class="dictionarySynonym">
-                                            <span class="dictionarySynonymWord">${escapeHtml(item.word)}</span>
-                                            <span class="dictionarySynonymScore">${item.score}%</span>
-                                            <span class="dictionaryScoreBar"><span style="width: ${item.score}%"></span></span>
-                                        </div>
-                                    `;
-                                }).join("")}
+                                ${createSynonymList(entry.arabicSynonyms)}
                             </div>
                         </section>
                         <section>
                             <span class="dictionaryLabel">Synonyms in English</span>
                             <div class="dictionaryPills dictionaryPillsEnglish">
-                                ${entry.englishSynonyms.map(function (item) {
-                                    return `
-                                        <div class="dictionarySynonym">
-                                            <span class="dictionarySynonymWord">${escapeHtml(item.word)}</span>
-                                            <span class="dictionarySynonymScore">${item.score}%</span>
-                                            <span class="dictionaryScoreBar"><span style="width: ${item.score}%"></span></span>
-                                        </div>
-                                    `;
-                                }).join("")}
+                                ${createSynonymList(entry.englishSynonyms)}
                             </div>
                         </section>
                     </div>

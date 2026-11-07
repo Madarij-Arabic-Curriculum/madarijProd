@@ -18,10 +18,10 @@ const placementQuestions = [
 ];
 
 const placementLevels = [
-    { title: "Level 0 · Foundations", guidance: "Start with the foundations track: script, essential vocabulary, and simple sentences." },
-    { title: "Level 1 · Building sentences", guidance: "Start with Level 1: everyday communication, present tense, and core sentence patterns." },
-    { title: "Level 2 · Developing fluency", guidance: "Start with Level 2: connected sentences, past and future forms, and practical reading." },
-    { title: "Level 3 · Reading with confidence", guidance: "Start with Level 3: longer texts, connectors, relative clauses, and nuanced grammar." }
+    { title: "Level 0 · Foundations", guidance: "Start with the foundations track: script, essential vocabulary, and simple sentences.", start: "Begin at Level 0. Build comfort with the Arabic script, high-frequency words, and short nominal sentences before moving ahead.", focus: "Script, essential vocabulary, gender, demonstratives, and basic reading." },
+    { title: "Level 1 · Building sentences", guidance: "Start with Level 1: everyday communication, present tense, and core sentence patterns.", start: "Begin at Level 1. Your foundation is developing; focus on building accurate everyday sentences and speaking about familiar topics.", focus: "Present-tense verbs, agreement, prepositions, questions, and daily communication." },
+    { title: "Level 2 · Developing fluency", guidance: "Start with Level 2: connected sentences, past and future forms, and practical reading.", start: "Begin at Level 2. Strengthen your ability to connect ideas and understand practical texts while reviewing any weaker earlier stage.", focus: "Past and future forms, negation, connected sentences, and practical reading." },
+    { title: "Level 3 · Reading with confidence", guidance: "Start with Level 3: longer texts, connectors, relative clauses, and nuanced grammar.", start: "Begin at Level 3. You are ready for longer Arabic texts and more nuanced grammar; use the earlier tracks only for targeted review.", focus: "Longer texts, connectors, relative clauses, conditionals, and advanced grammar." }
 ];
 
 const placementForm = document.querySelector("#placementForm");
@@ -35,7 +35,9 @@ const placementPrevious = document.querySelector("#placementPrevious");
 const placementNext = document.querySelector("#placementNext");
 const placementSubmit = document.querySelector("#placementSubmit");
 const placementQuestionNavigator = document.querySelector("#placementQuestionNavigator");
+const placementExport = document.querySelector("#placementExport");
 let currentQuestionIndex = 0;
+let latestPlacementResult = null;
 
 function renderPlacementQuestions() {
     placementQuestionsElement.innerHTML = placementQuestions.map(function (question, index) {
@@ -127,7 +129,16 @@ function getPlacementResult() {
             recommendedLevel = level;
         }
     });
-    return { scores: scores, total: total, recommendedLevel: recommendedLevel };
+    const responses = placementQuestions.map(function (question, index) {
+        const selected = placementForm.querySelector(`input[name="question-${index}"]:checked`);
+        const selectedValue = selected ? selected.value : "unanswered";
+        return {
+            question: question,
+            selectedValue: selectedValue,
+            correct: selectedValue !== "skip" && Number(selectedValue) === question.answer
+        };
+    });
+    return { scores: scores, total: total, recommendedLevel: recommendedLevel, responses: responses };
 }
 
 function savePlacementResult(result) {
@@ -139,15 +150,94 @@ function savePlacementResult(result) {
 }
 
 function showPlacementResult(result) {
+    latestPlacementResult = result;
     document.querySelector("#placementResultTitle").textContent = placementLevels[result.recommendedLevel].title;
     document.querySelector("#placementResultScore").textContent = `You answered ${result.total} of ${placementQuestions.length} correctly.`;
+    document.querySelector("#placementResultStart").textContent = placementLevels[result.recommendedLevel].start;
     document.querySelector("#placementResultBreakdown").innerHTML = result.scores.map(function (score, level) {
-        return `<div><strong>${score}/4</strong><span>${placementLevels[level].title}</span></div>`;
+        const stage = placementLevels[level];
+        const status = score >= 3 ? "Ready to progress" : "Review before progressing";
+        return `<div><strong>${score}/4</strong><span>${stage.title}</span><small>${status}</small></div>`;
+    }).join("");
+    document.querySelector("#placementDetailedReport").innerHTML = result.scores.map(function (score, level) {
+        const stage = placementLevels[level];
+        return `
+            <article class="placementStageReport">
+                <div>
+                    <h3>${stage.title}</h3>
+                    <strong>${score}/4</strong>
+                </div>
+                <p><b>Focus:</b> ${stage.focus}</p>
+                <p>${score >= 3 ? "You demonstrated enough control to move through this stage." : "Review this stage before relying on higher-level material."}</p>
+            </article>
+        `;
     }).join("");
     document.querySelector("#placementResultGuidance").textContent = placementLevels[result.recommendedLevel].guidance;
     placementForm.hidden = true;
     placementResult.hidden = false;
-    placementResult.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function reportEscape(value) {
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+function exportPlacementReport() {
+    if (!latestPlacementResult) {
+        return;
+    }
+
+    const result = latestPlacementResult;
+    const level = placementLevels[result.recommendedLevel];
+    const reportWindow = window.open("", "_blank", "width=900,height=800");
+
+    if (!reportWindow) {
+        placementError.hidden = false;
+        placementError.textContent = "The report window was blocked. Allow pop-ups to export your PDF.";
+        return;
+    }
+
+    const stageRows = result.scores.map(function (score, stageIndex) {
+        const stage = placementLevels[stageIndex];
+        return `<section class="stage"><h2>${reportEscape(stage.title)} <span>${score}/4</span></h2><p><b>Focus:</b> ${reportEscape(stage.focus)}</p><p>${score >= 3 ? "Ready to progress through this stage." : "Review this stage before progressing."}</p></section>`;
+    }).join("");
+    const questionRows = result.responses.map(function (response, index) {
+        const answer = response.selectedValue === "skip"
+            ? "I don't know / skipped"
+            : response.selectedValue === "unanswered"
+                ? "Unanswered"
+                : response.question.options[Number(response.selectedValue)];
+        const status = response.correct ? "Correct" : response.selectedValue === "skip" ? "Skipped" : "Needs review";
+        return `<tr><td>${index + 1}</td><td>${reportEscape(response.question.prompt)}</td><td>${reportEscape(answer)}</td><td>${status}</td></tr>`;
+    }).join("");
+
+    reportWindow.document.write(`
+        <!doctype html>
+        <html><head><title>Madarij Placement Report</title>
+        <style>
+            body{font:15px Arial,sans-serif;line-height:1.55;color:#1b1f1e;max-width:850px;margin:0 auto;padding:40px}
+            h1,h2{color:#0f4c45} h1{font-size:30px} h2{border-bottom:1px solid #d9c897;padding-bottom:8px}
+            .summary{background:#f3ead4;padding:18px;border-left:5px solid #c9a24b}
+            .stage{border:1px solid #d8dedb;border-radius:8px;padding:14px;margin:12px 0}
+            .stage h2{border:0;margin:0}.stage h2 span{float:right;color:#c9a24b}
+            table{width:100%;border-collapse:collapse;margin-top:18px} th,td{border:1px solid #d8dedb;padding:8px;text-align:left;vertical-align:top} th{background:#0f4c45;color:#fff}
+            .print{background:#0f4c45;color:#fff;border:0;padding:10px 16px;border-radius:5px;font-weight:bold}
+            @media print{body{padding:0}.print{display:none}}
+        </style></head><body>
+        <button class="print" onclick="window.print()">Save / Print as PDF</button>
+        <h1>Madarij Arabic Placement Report</h1>
+        <p>Completed ${new Date().toLocaleDateString()}</p>
+        <div class="summary"><h2>Recommended starting point: ${reportEscape(level.title)}</h2><p>${reportEscape(level.start)}</p><p><b>Overall score:</b> ${result.total}/${placementQuestions.length}</p></div>
+        <h2>Stage-by-stage report</h2>${stageRows}
+        <h2>Question review</h2><table><thead><tr><th>#</th><th>Question</th><th>Response</th><th>Result</th></tr></thead><tbody>${questionRows}</tbody></table>
+        </body></html>
+    `);
+    reportWindow.document.close();
+    reportWindow.focus();
 }
 
 if (placementForm) {
@@ -159,6 +249,7 @@ if (placementForm) {
         updatePlacementProgress();
         updateQuestionNavigator();
     });
+    placementExport.addEventListener("click", exportPlacementReport);
     placementQuestionNavigator.addEventListener("click", function (event) {
         const jumpButton = event.target.closest(".placementQuestionJump");
         if (!jumpButton) {

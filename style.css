@@ -2528,6 +2528,13 @@ h2 {
     color: rgba(27, 31, 30, 0.72);
 }
 
+.placementResultStart {
+    padding: 1rem 1.1rem;
+    border-left: 4px solid var(--gold);
+    background: rgba(201, 162, 75, 0.12);
+    color: var(--emerald) !important;
+}
+
 .placementResultGrid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -2550,8 +2557,52 @@ h2 {
 }
 
 .placementResultGrid span {
+    display: block;
     color: rgba(27, 31, 30, 0.62);
     font-size: 0.72rem;
+}
+
+.placementResultGrid small {
+    color: rgba(27, 31, 30, 0.62);
+    font-size: 0.68rem;
+}
+
+.placementDetailedReport {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.placementStageReport {
+    padding: 1rem;
+    border: 1px solid rgba(15, 76, 69, 0.14);
+    border-radius: 0.65rem;
+    background: rgba(15, 76, 69, 0.04);
+}
+
+.placementStageReport > div {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.placementStageReport h3 {
+    margin: 0;
+    color: var(--emerald);
+    font-size: 1rem;
+}
+
+.placementStageReport > div strong {
+    color: var(--gold);
+    font-family: var(--Lora);
+    font-size: 1.25rem;
+}
+
+.placementStageReport p {
+    margin: 0.45rem 0 0;
+    color: rgba(27, 31, 30, 0.7);
+    font-size: 0.85rem;
 }
 
 .placementResultActions {
@@ -2567,6 +2618,22 @@ h2 {
     min-width: 12rem;
     min-height: 3rem;
     padding: 0.8rem 1.35rem;
+}
+
+.placementExport {
+    width: auto;
+    min-width: 12rem;
+    min-height: 3rem;
+    height: auto;
+    padding: 0.8rem 1.35rem;
+    border-color: var(--gold);
+    background: var(--gold);
+    color: var(--emerald);
+}
+
+.placementExport:hover {
+    background: #d7b763;
+    transform: translateY(-0.1rem);
 }
 
 @media (max-width: 48rem) {

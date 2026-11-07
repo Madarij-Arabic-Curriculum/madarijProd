@@ -35,8 +35,11 @@ const placementRetake = document.querySelector("#placementRetake");
 function renderPlacementQuestions() {
     placementQuestionsElement.innerHTML = placementQuestions.map(function (question, index) {
         return `
-            <fieldset class="placementQuestion">
-                <legend><span>${index + 1}</span><strong>${question.prompt}</strong></legend>
+            <section class="placementQuestion" role="group" aria-labelledby="placement-question-${index}">
+                <div class="placementQuestionHeading" id="placement-question-${index}" role="heading" aria-level="2">
+                    <span>${index + 1}</span>
+                    <strong>${question.prompt}</strong>
+                </div>
                 <p lang="ar" dir="rtl">${question.promptArabic}</p>
                 <div class="placementOptions">
                     ${question.options.map(function (option, optionIndex) {
@@ -48,7 +51,7 @@ function renderPlacementQuestions() {
                         `;
                     }).join("")}
                 </div>
-            </fieldset>
+            </section>
         `;
     }).join("");
 }

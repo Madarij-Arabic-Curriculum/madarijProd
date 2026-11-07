@@ -2186,7 +2186,331 @@ h2 {
         padding-right: 1rem;
         padding-left: 1rem;
     }
+}
 
+/* ==================== Placement Exam ==================== */
+
+.vaultHeaderActions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+.vaultPlacementCard {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    padding: 1.5rem;
+    border: 1px solid rgba(201, 162, 75, 0.65);
+    border-radius: 1rem;
+    background: linear-gradient(110deg, rgba(15, 76, 69, 0.08), rgba(201, 162, 75, 0.16));
+    background-size: 180% 180%;
+    animation: placementGlow 8s ease-in-out infinite;
+}
+
+.vaultPlacementCard[hidden] {
+    display: none;
+}
+
+@keyframes placementGlow {
+    0%,
+    100% {
+        background-position: 0% 50%;
+        box-shadow: 0 0 0 rgba(201, 162, 75, 0);
+    }
+
+    50% {
+        background-position: 100% 50%;
+        box-shadow: 0 0 2rem rgba(201, 162, 75, 0.2);
+    }
+}
+
+.vaultPlacementCard h2 {
+    margin: 0 0 0.5rem;
+    color: var(--emerald);
+    font-size: clamp(1.25rem, 3vw, 1.8rem);
+}
+
+.vaultPlacementCard p:last-child {
+    max-width: 42rem;
+    margin: 0;
+    color: rgba(27, 31, 30, 0.7);
+}
+
+.vaultPlacementCard .ctaButton,
+.vaultPlacementDismiss {
+    flex: 0 0 auto;
+}
+
+.vaultPlacementCard .ctaButton {
+    width: auto;
+    min-width: 12rem;
+}
+
+.vaultPlacementDismiss {
+    width: auto;
+    min-width: 5rem;
+    height: auto;
+    min-height: 2.75rem;
+    padding: 0.65rem 0.9rem;
+    border-color: rgba(15, 76, 69, 0.35);
+    background: transparent;
+    color: var(--emerald);
+    font-size: 0.8rem;
+}
+
+.vaultPlacementDismiss:hover {
+    border-color: var(--gold);
+    background: rgba(201, 162, 75, 0.14);
+}
+
+.placementPage {
+    width: min(100%, 54rem);
+    min-height: calc(100vh - 6rem);
+    margin: 0 auto;
+    padding: 4rem 1.5rem 6rem;
+}
+
+.placementHeader {
+    max-width: 44rem;
+    margin-bottom: 2rem;
+}
+
+.placementHeader h1 {
+    margin-bottom: 1rem;
+}
+
+.placementHeader > p:not(.sectionLabel) {
+    margin: 0;
+    color: rgba(27, 31, 30, 0.72);
+}
+
+.placementMeta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+}
+
+.placementMeta span {
+    padding: 0.4rem 0.7rem;
+    border: 1px solid rgba(15, 76, 69, 0.2);
+    border-radius: 999px;
+    color: var(--emerald);
+    font-size: 0.78rem;
+}
+
+.placementProgress {
+    position: sticky;
+    top: 0;
+    z-index: 4;
+    display: grid;
+    gap: 0.45rem;
+    margin-bottom: 1.25rem;
+    padding: 0.8rem 0;
+    background: var(--cream);
+    color: var(--emerald);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.placementProgressTrack {
+    height: 0.45rem;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(15, 76, 69, 0.12);
+}
+
+.placementProgressTrack div {
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--gold);
+    transition: width 180ms ease;
+}
+
+.placementQuestion {
+    margin: 0 0 1.35rem;
+    padding: 1.5rem;
+    border: 1px solid rgba(15, 76, 69, 0.16);
+    border-radius: 0.85rem;
+    background: rgba(255, 255, 255, 0.62);
+}
+
+.placementQuestion legend {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0;
+    color: var(--ink);
+    font-size: 1.05rem;
+    line-height: 1.55;
+}
+
+.placementQuestion legend span {
+    display: inline-grid;
+    flex: 0 0 auto;
+    place-items: center;
+    width: 1.65rem;
+    height: 1.65rem;
+    border-radius: 50%;
+    background: var(--emerald);
+    color: var(--cream);
+    font-size: 0.75rem;
+}
+
+.placementQuestion > p {
+    margin: 0.85rem 0 1.25rem 2.4rem;
+    color: var(--emerald);
+    font-family: var(--Amiri);
+    font-size: 1.35rem;
+    line-height: 1.4;
+}
+
+.placementOptions {
+    display: grid;
+    gap: 0.7rem;
+    margin-left: 2.4rem;
+}
+
+.placementOptions label {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-height: 3rem;
+    padding: 0.8rem 0.9rem;
+    border: 1px solid rgba(15, 76, 69, 0.14);
+    border-radius: 0.5rem;
+    background: rgba(247, 241, 227, 0.52);
+    cursor: pointer;
+}
+
+.placementOptions label:has(input:checked) {
+    border-color: var(--gold);
+    background: rgba(201, 162, 75, 0.15);
+}
+
+.placementOptions input {
+    accent-color: var(--emerald);
+}
+
+.placementSubmit,
+.placementRetake {
+    width: auto;
+    min-width: 12rem;
+    height: auto;
+    min-height: 3rem;
+    padding: 0.8rem 1.35rem;
+    border-color: var(--emerald);
+    background: var(--emerald);
+    color: var(--cream);
+}
+
+.placementSubmit:hover,
+.placementRetake:hover {
+    background: #0a3934;
+    transform: translateY(-0.1rem);
+}
+
+.placementError {
+    margin: 0 0 1rem;
+    color: #8b2020;
+    font-weight: 600;
+}
+
+.placementResult {
+    padding: clamp(1.25rem, 4vw, 2.5rem);
+    border: 1px solid rgba(201, 162, 75, 0.7);
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.placementResult h2 {
+    margin: 0 0 0.5rem;
+    color: var(--emerald);
+}
+
+.placementResult > p:not(.sectionLabel) {
+    color: rgba(27, 31, 30, 0.72);
+}
+
+.placementResultGrid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.6rem;
+    margin: 1.5rem 0;
+}
+
+.placementResultGrid div {
+    display: grid;
+    gap: 0.2rem;
+    padding: 0.8rem;
+    border-radius: 0.6rem;
+    background: rgba(15, 76, 69, 0.07);
+}
+
+.placementResultGrid strong {
+    color: var(--emerald);
+    font-family: var(--Lora);
+    font-size: 1.35rem;
+}
+
+.placementResultGrid span {
+    color: rgba(27, 31, 30, 0.62);
+    font-size: 0.72rem;
+}
+
+.placementResultActions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.placementResultActions .ctaButton {
+    width: auto;
+    min-width: 12rem;
+    min-height: 3rem;
+    padding: 0.8rem 1.35rem;
+}
+
+@media (max-width: 48rem) {
+    .vaultHeader,
+    .vaultPlacementCard {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .vaultHeaderActions {
+        justify-content: flex-start;
+    }
+
+    .vaultPlacementCard .ctaButton,
+    .vaultPlacementDismiss {
+        width: 100%;
+    }
+
+    .placementPage {
+        padding: 3rem 1rem 4rem;
+    }
+
+    .placementResultGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .placementQuestion > p,
+    .placementOptions {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 48rem) {
     .vaultDashboard {
         width: 100%;
     }
@@ -2276,8 +2600,10 @@ h2 {
     .vaultDoor,
     .vaultLessons,
     .vaultMaterials,
-    .supportMenu {
+    .supportMenu,
+    .vaultPlacementCard {
         transition: none;
+        animation: none;
     }
 
     .vaultScene.vaultIsOpen .vaultContent,

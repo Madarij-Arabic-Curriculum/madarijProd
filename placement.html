@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Exam | Madarij</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;600&family=Lora:wght@600;700&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
+    <script src="placement.js" defer></script>
+</head>
+<body>
+    <nav>
+        <div class="navLogo">
+            <a href="vault.html" aria-label="Return to the Madarij Vault">
+                <img src="Elements/Full Icon.jpg" alt="Madarij home" width="100">
+            </a>
+        </div>
+        <div class="navDropdown">
+            <div class="navLinks">
+                <a href="index.html">How It Works</a>
+                <a href="dictionary.html">Dictionary</a>
+                <a href="vault.html">The Vault</a>
+            </div>
+            <div class="navButtonContainer">
+                <a class="navButton" href="vault.html">Back to the Vault</a>
+            </div>
+        </div>
+        <div class="hamburgerContainer">
+            <button class="hamburgerButton" type="button" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+        </div>
+    </nav>
+
+    <main class="placementPage">
+        <header class="placementHeader">
+            <p class="sectionLabel">Madarij placement exam</p>
+            <h1>Find the level that fits your Arabic today.</h1>
+            <p>Answer every question without a dictionary. Your result uses performance by stage, so a strong vocabulary score cannot hide a missing foundation.</p>
+            <div class="placementMeta">
+                <span>16 questions</span>
+                <span>Reading, vocabulary, grammar, and comprehension</span>
+                <span>About 10 minutes</span>
+            </div>
+        </header>
+
+        <form class="placementForm" id="placementForm" novalidate>
+            <div class="placementProgress" aria-live="polite">
+                <span id="placementProgressText">0 of 16 answered</span>
+                <div class="placementProgressTrack"><div id="placementProgressBar"></div></div>
+            </div>
+            <div id="placementQuestions"></div>
+            <p class="placementError" id="placementError" role="alert" hidden></p>
+            <button class="placementSubmit" type="submit">See my placement</button>
+        </form>
+
+        <section class="placementResult" id="placementResult" aria-live="polite" hidden>
+            <p class="sectionLabel">Your placement</p>
+            <h2 id="placementResultTitle"></h2>
+            <p id="placementResultScore"></p>
+            <div class="placementResultGrid" id="placementResultBreakdown"></div>
+            <p id="placementResultGuidance"></p>
+            <div class="placementResultActions">
+                <a class="ctaButton" href="vault.html">Open my recommended level</a>
+                <button class="placementRetake" type="button" id="placementRetake">Retake exam</button>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

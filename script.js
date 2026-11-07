@@ -1396,3 +1396,42 @@ if (vaultLevels) {
         });
     });
 }
+
+const vaultPlacementSummary = document.querySelector("#vaultPlacementSummary");
+const vaultPlacementAction = document.querySelector("#vaultPlacementAction");
+const vaultPlacementCard = document.querySelector(".vaultPlacementCard");
+const vaultPlacementDismiss = document.querySelector("#vaultPlacementDismiss");
+
+if (vaultLevels && vaultPlacementSummary && vaultPlacementAction && vaultPlacementCard) {
+    const savedPlacement = localStorage.getItem("madarijPlacementResult");
+    const placementDismissed = localStorage.getItem("madarijPlacementDismissed") === "true";
+
+    if (placementDismissed && savedPlacement) {
+        vaultPlacementCard.hidden = true;
+    }
+
+    if (savedPlacement && !placementDismissed) {
+        try {
+            const placement = JSON.parse(savedPlacement);
+            const recommendedLevel = Number(placement.recommendedLevel);
+            const levelTab = vaultLevels.querySelector(`[data-level-index="${recommendedLevel}"]`);
+
+            if (levelTab) {
+                levelTab.click();
+                vaultPlacementSummary.textContent =
+                    `Your latest result recommends ${curriculumData[recommendedLevel].title}. ` +
+                    `Review the level below, or retake the exam whenever you are ready.`;
+                vaultPlacementAction.textContent = "Retake exam";
+            }
+        } catch (error) {
+            console.error("Could not read the saved placement result.", error);
+        }
+    }
+}
+
+if (vaultPlacementDismiss && vaultPlacementCard) {
+    vaultPlacementDismiss.addEventListener("click", function () {
+        localStorage.setItem("madarijPlacementDismissed", "true");
+        vaultPlacementCard.hidden = true;
+    });
+}

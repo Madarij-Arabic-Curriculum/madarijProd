@@ -1402,7 +1402,7 @@ const vaultPlacementAction = document.querySelector("#vaultPlacementAction");
 const vaultPlacementCard = document.querySelector(".vaultPlacementCard");
 const vaultPlacementDismiss = document.querySelector("#vaultPlacementDismiss");
 const vaultPlacementDismissIcon = vaultPlacementDismiss
-    ? vaultPlacementDismiss.querySelector("span")
+    ? vaultPlacementDismiss.querySelector(".vaultPlacementDismissIcon")
     : null;
 const vaultPlacementDismissLabel = document.querySelector(".vaultPlacementDismissLabel");
 
@@ -1421,6 +1421,7 @@ if (vaultLevels && vaultPlacementSummary && vaultPlacementAction && vaultPlaceme
             vaultPlacementDismissLabel.textContent = "Show";
         }
         vaultPlacementDismiss.setAttribute("aria-expanded", "false");
+        vaultPlacementDismiss.setAttribute("aria-label", "Show placement recommendation");
     }
 
     if (savedPlacement) {

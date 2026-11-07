@@ -2330,6 +2330,8 @@ h2 {
 
 .vaultPlacementCardMinimized .vaultPlacementDismiss {
     position: static;
+    align-self: center;
+    margin-left: auto;
 }
 
 .vaultPlacementCard .ctaButton {
@@ -2346,6 +2348,7 @@ h2 {
     align-items: center;
     gap: 0.3rem;
     width: auto;
+    flex: 0 0 auto;
     min-width: 0;
     height: 2rem;
     min-height: 0;
@@ -2355,13 +2358,14 @@ h2 {
     color: var(--emerald);
     font-size: 0.8rem;
     line-height: 1;
+    white-space: nowrap;
 }
 
 .vaultPlacementDismiss span {
     display: inline-block;
     font-size: 1.2rem;
-    line-height: 0.7;
-    transform: translateY(-0.08rem);
+    line-height: 1;
+    transform: none;
 }
 
 .vaultPlacementDismiss:hover {

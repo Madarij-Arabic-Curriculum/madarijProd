@@ -2333,6 +2333,51 @@ h2 {
     transition: width 180ms ease;
 }
 
+.placementQuestionNavigator {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    gap: 0.45rem;
+    margin-bottom: 1.5rem;
+}
+
+.placementQuestionJump {
+    display: grid;
+    justify-items: center;
+    gap: 0.1rem;
+    width: auto;
+    min-width: 0;
+    height: auto;
+    min-height: 3.25rem;
+    padding: 0.45rem 0.25rem;
+    border: 1px solid rgba(15, 76, 69, 0.18);
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.62);
+    color: var(--emerald);
+}
+
+.placementQuestionJump span {
+    font-weight: 600;
+}
+
+.placementQuestionJump small {
+    color: rgba(27, 31, 30, 0.56);
+    font-size: 0.62rem;
+}
+
+.placementQuestionJump:hover,
+.placementQuestionJumpActive {
+    border-color: var(--gold);
+    background: rgba(201, 162, 75, 0.14);
+}
+
+.placementQuestionJumpAnswered {
+    border-color: rgba(15, 76, 69, 0.48);
+}
+
+.placementQuestionJumpAnswered small {
+    color: var(--emerald);
+}
+
 .placementQuestion {
     min-width: 0;
     margin: 0 0 1.35rem;
@@ -2398,12 +2443,19 @@ h2 {
     background: rgba(201, 162, 75, 0.15);
 }
 
+.placementOptions .placementSkipOption {
+    border-style: dashed;
+    color: rgba(27, 31, 30, 0.68);
+}
+
 .placementOptions input {
     accent-color: var(--emerald);
 }
 
 .placementSubmit,
-.placementRetake {
+.placementRetake,
+.placementPrevious,
+.placementNext {
     width: auto;
     min-width: 12rem;
     height: auto;
@@ -2415,9 +2467,39 @@ h2 {
 }
 
 .placementSubmit:hover,
-.placementRetake:hover {
+.placementRetake:hover,
+.placementPrevious:hover,
+.placementNext:hover {
     background: #0a3934;
     transform: translateY(-0.1rem);
+}
+
+.placementNavigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.placementNavigationGroup {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.placementNavigation .placementSubmit {
+    margin-left: 0.5rem;
+}
+
+.placementPrevious:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+}
+
+.placementPrevious[hidden],
+.placementNext[hidden],
+.placementSubmit[hidden] {
+    display: none;
 }
 
 .placementError {
@@ -2501,6 +2583,23 @@ h2 {
 
     .placementPage {
         padding: 3rem 1rem 4rem;
+    }
+
+    .placementQuestionNavigator {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .placementNavigation {
+        flex-wrap: wrap;
+    }
+
+    .placementNavigationGroup {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .placementNavigation .placementSubmit {
+        margin-left: 0;
     }
 
     .placementResultGrid {

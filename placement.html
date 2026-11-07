@@ -50,9 +50,16 @@
                 <span id="placementProgressText">0 of 16 answered</span>
                 <div class="placementProgressTrack"><div id="placementProgressBar"></div></div>
             </div>
+            <div class="placementQuestionNavigator" id="placementQuestionNavigator" aria-label="Jump to a question"></div>
             <div id="placementQuestions"></div>
             <p class="placementError" id="placementError" role="alert" hidden></p>
-            <button class="placementSubmit" type="submit">See my placement</button>
+            <div class="placementNavigation">
+                <div class="placementNavigationGroup">
+                    <button class="placementPrevious" id="placementPrevious" type="button">← Previous</button>
+                    <button class="placementNext" id="placementNext" type="button">Next →</button>
+                </div>
+                <button class="placementSubmit" id="placementSubmit" type="submit">See my placement</button>
+            </div>
         </form>
 
         <section class="placementResult" id="placementResult" aria-live="polite" hidden>

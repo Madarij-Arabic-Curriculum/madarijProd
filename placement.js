@@ -31,6 +31,11 @@ const placementProgressBar = document.querySelector("#placementProgressBar");
 const placementError = document.querySelector("#placementError");
 const placementResult = document.querySelector("#placementResult");
 const placementRetake = document.querySelector("#placementRetake");
+const placementPrevious = document.querySelector("#placementPrevious");
+const placementNext = document.querySelector("#placementNext");
+const placementSubmit = document.querySelector("#placementSubmit");
+const placementQuestionNavigator = document.querySelector("#placementQuestionNavigator");
+let currentQuestionIndex = 0;
 
 function renderPlacementQuestions() {
     placementQuestionsElement.innerHTML = placementQuestions.map(function (question, index) {
@@ -50,18 +55,59 @@ function renderPlacementQuestions() {
                             </label>
                         `;
                     }).join("")}
+                    <label class="placementSkipOption">
+                        <input type="radio" name="question-${index}" value="skip">
+                        <span>I don't know / skip</span>
+                    </label>
                 </div>
             </section>
         `;
     }).join("");
 }
 
+function renderQuestionNavigator() {
+    placementQuestionNavigator.innerHTML = placementQuestions.map(function (_, index) {
+        return `
+            <button class="placementQuestionJump" type="button" data-question-index="${index}">
+                <span>${index + 1}</span>
+                <small>Unanswered</small>
+            </button>
+        `;
+    }).join("");
+}
+
+function isQuestionAnswered(index) {
+    return Boolean(placementForm.querySelector(`input[name="question-${index}"]:checked`));
+}
+
+function updateQuestionNavigator() {
+    placementQuestionNavigator.querySelectorAll(".placementQuestionJump").forEach(function (button, index) {
+        const answered = isQuestionAnswered(index);
+        button.classList.toggle("placementQuestionJumpActive", index === currentQuestionIndex);
+        button.classList.toggle("placementQuestionJumpAnswered", answered);
+        button.setAttribute("aria-current", index === currentQuestionIndex ? "step" : "false");
+        button.querySelector("small").textContent = answered ? "Answered" : "Unanswered";
+    });
+}
+
+function updateQuestionVisibility() {
+    placementQuestionsElement.querySelectorAll(".placementQuestion").forEach(function (question, index) {
+        const isCurrent = index === currentQuestionIndex;
+        question.hidden = !isCurrent;
+        question.setAttribute("aria-hidden", String(!isCurrent));
+    });
+    placementPrevious.disabled = currentQuestionIndex === 0;
+    placementNext.hidden = currentQuestionIndex === placementQuestions.length - 1;
+    placementSubmit.hidden = currentQuestionIndex !== placementQuestions.length - 1;
+    updateQuestionNavigator();
+}
+
 function updatePlacementProgress() {
     const answered = placementQuestions.filter(function (_, index) {
-        return placementForm.querySelector(`input[name="question-${index}"]:checked`);
+        return isQuestionAnswered(index);
     }).length;
     placementProgressText.textContent = `${answered} of ${placementQuestions.length} answered`;
-    placementProgressBar.style.width = `${(answered / placementQuestions.length) * 100}%`;
+    placementProgressBar.style.width = `${((currentQuestionIndex + 1) / placementQuestions.length) * 100}%`;
 }
 
 function getPlacementResult() {
@@ -71,7 +117,7 @@ function getPlacementResult() {
                 return score;
             }
             const selected = placementForm.querySelector(`input[name="question-${index}"]:checked`);
-            return score + (selected && Number(selected.value) === question.answer ? 1 : 0);
+            return score + (selected && selected.value !== "skip" && Number(selected.value) === question.answer ? 1 : 0);
         }, 0);
     });
     const total = scores.reduce(function (sum, score) { return sum + score; }, 0);
@@ -106,7 +152,44 @@ function showPlacementResult(result) {
 
 if (placementForm) {
     renderPlacementQuestions();
-    placementForm.addEventListener("change", updatePlacementProgress);
+    renderQuestionNavigator();
+    updateQuestionVisibility();
+    updatePlacementProgress();
+    placementForm.addEventListener("change", function () {
+        updatePlacementProgress();
+        updateQuestionNavigator();
+    });
+    placementQuestionNavigator.addEventListener("click", function (event) {
+        const jumpButton = event.target.closest(".placementQuestionJump");
+        if (!jumpButton) {
+            return;
+        }
+        currentQuestionIndex = Number(jumpButton.dataset.questionIndex);
+        placementError.hidden = true;
+        updateQuestionVisibility();
+        updatePlacementProgress();
+        placementQuestionsElement.querySelector(".placementQuestion:not([hidden]) input").focus();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+    placementNext.addEventListener("click", function () {
+        placementError.hidden = true;
+        currentQuestionIndex += 1;
+        updateQuestionVisibility();
+        updatePlacementProgress();
+        placementQuestionsElement.querySelector(".placementQuestion:not([hidden]) input").focus();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+    placementPrevious.addEventListener("click", function () {
+        if (currentQuestionIndex === 0) {
+            return;
+        }
+        placementError.hidden = true;
+        currentQuestionIndex -= 1;
+        updateQuestionVisibility();
+        updatePlacementProgress();
+        placementQuestionsElement.querySelector(".placementQuestion:not([hidden]) input").focus();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
     placementForm.addEventListener("submit", function (event) {
         event.preventDefault();
         const unanswered = placementQuestions.findIndex(function (_, index) {
@@ -125,7 +208,9 @@ if (placementForm) {
     });
     placementRetake.addEventListener("click", function () {
         placementForm.reset();
+        currentQuestionIndex = 0;
         updatePlacementProgress();
+        updateQuestionVisibility();
         placementResult.hidden = true;
         placementForm.hidden = false;
         window.scrollTo({ top: 0, behavior: "smooth" });

@@ -112,6 +112,13 @@ function updatePlacementProgress() {
     placementProgressBar.style.width = `${((currentQuestionIndex + 1) / placementQuestions.length) * 100}%`;
 }
 
+function focusCurrentQuestion() {
+    const currentInput = placementQuestionsElement.querySelector(".placementQuestion:not([hidden]) input");
+    if (currentInput) {
+        currentInput.focus({ preventScroll: true });
+    }
+}
+
 function getPlacementResult() {
     const scores = placementLevels.map(function (_, level) {
         return placementQuestions.reduce(function (score, question, index) {
@@ -259,16 +266,14 @@ if (placementForm) {
         placementError.hidden = true;
         updateQuestionVisibility();
         updatePlacementProgress();
-        placementQuestionsElement.querySelector(".placementQuestion:not([hidden]) input").focus();
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        focusCurrentQuestion();
     });
     placementNext.addEventListener("click", function () {
         placementError.hidden = true;
         currentQuestionIndex += 1;
         updateQuestionVisibility();
         updatePlacementProgress();
-        placementQuestionsElement.querySelector(".placementQuestion:not([hidden]) input").focus();
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        focusCurrentQuestion();
     });
     placementPrevious.addEventListener("click", function () {
         if (currentQuestionIndex === 0) {
@@ -278,8 +283,7 @@ if (placementForm) {
         currentQuestionIndex -= 1;
         updateQuestionVisibility();
         updatePlacementProgress();
-        placementQuestionsElement.querySelector(".placementQuestion:not([hidden]) input").focus();
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        focusCurrentQuestion();
     });
     placementForm.addEventListener("submit", function (event) {
         event.preventDefault();

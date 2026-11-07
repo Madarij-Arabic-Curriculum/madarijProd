@@ -1401,16 +1401,29 @@ const vaultPlacementSummary = document.querySelector("#vaultPlacementSummary");
 const vaultPlacementAction = document.querySelector("#vaultPlacementAction");
 const vaultPlacementCard = document.querySelector(".vaultPlacementCard");
 const vaultPlacementDismiss = document.querySelector("#vaultPlacementDismiss");
+const vaultPlacementDismissIcon = vaultPlacementDismiss
+    ? vaultPlacementDismiss.querySelector("span")
+    : null;
+const vaultPlacementDismissLabel = document.querySelector(".vaultPlacementDismissLabel");
 
 if (vaultLevels && vaultPlacementSummary && vaultPlacementAction && vaultPlacementCard) {
     const savedPlacement = localStorage.getItem("madarijPlacementResult");
-    const placementDismissed = localStorage.getItem("madarijPlacementDismissed") === "true";
+    const placementMinimized =
+        localStorage.getItem("madarijPlacementMinimized") === "true" ||
+        localStorage.getItem("madarijPlacementDismissed") === "true";
 
-    if (placementDismissed && savedPlacement) {
-        vaultPlacementCard.hidden = true;
+    if (placementMinimized) {
+        vaultPlacementCard.classList.add("vaultPlacementCardMinimized");
+        if (vaultPlacementDismissIcon) {
+            vaultPlacementDismissIcon.textContent = "⌃";
+        }
+        if (vaultPlacementDismissLabel) {
+            vaultPlacementDismissLabel.textContent = "Show";
+        }
+        vaultPlacementDismiss.setAttribute("aria-expanded", "false");
     }
 
-    if (savedPlacement && !placementDismissed) {
+    if (savedPlacement) {
         try {
             const placement = JSON.parse(savedPlacement);
             const recommendedLevel = Number(placement.recommendedLevel);
@@ -1431,7 +1444,19 @@ if (vaultLevels && vaultPlacementSummary && vaultPlacementAction && vaultPlaceme
 
 if (vaultPlacementDismiss && vaultPlacementCard) {
     vaultPlacementDismiss.addEventListener("click", function () {
-        localStorage.setItem("madarijPlacementDismissed", "true");
-        vaultPlacementCard.hidden = true;
+        const isMinimized = vaultPlacementCard.classList.toggle("vaultPlacementCardMinimized");
+        localStorage.setItem("madarijPlacementMinimized", String(isMinimized));
+        localStorage.removeItem("madarijPlacementDismissed");
+        vaultPlacementDismiss.setAttribute("aria-expanded", String(!isMinimized));
+        vaultPlacementDismiss.setAttribute(
+            "aria-label",
+            isMinimized ? "Show placement recommendation" : "Minimize placement recommendation"
+        );
+        if (vaultPlacementDismissIcon) {
+            vaultPlacementDismissIcon.textContent = isMinimized ? "⌃" : "⌄";
+        }
+        if (vaultPlacementDismissLabel) {
+            vaultPlacementDismissLabel.textContent = isMinimized ? "Show" : "Hide";
+        }
     });
 }

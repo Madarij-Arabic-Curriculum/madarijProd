@@ -154,6 +154,7 @@ function savePlacementResult(result) {
         completedAt: new Date().toISOString()
     }));
     localStorage.removeItem("madarijPlacementDismissed");
+    localStorage.removeItem("madarijPlacementMinimized");
 }
 
 function showPlacementResult(result) {

@@ -67,70 +67,74 @@
 
         <!-- Curriculum dashboard -->
         <section class="vaultDashboard" aria-labelledby="vaultHeading">
-            <div class="vaultHeader">
+            <header class="vaultHeader">
                 <div class="vaultIntro">
                     <p class="sectionLabel">Curriculum workspace</p>
-                        <h1 id="vaultHeading">Find your next step in Arabic.</h1>
+                    <h1 id="vaultHeading">Find your next step in Arabic.</h1>
                     <p>
-                            Take the placement exam to identify the right starting
-                            level, then browse the lessons and book tracks that
-                            support your stage.
-                        </p>
-                    </div>
-                    <div class="vaultHeaderActions">
-                        <a class="vaultHomeLink" href="placement.html">Take placement exam</a>
-                        <a class="vaultHomeLink" href="index.html">Back to home</a>
-                    </div>
+                        Take the placement exam to identify the right starting
+                        level, then browse the lessons and book tracks that
+                        support your stage.
+                    </p>
                 </div>
+                <div class="vaultHeaderActions">
+                    <a class="vaultHomeLink" href="placement.html">Take placement exam</a>
+                    <a class="vaultHomeLink" href="index.html">Back to home</a>
+                </div>
+            </header>
 
-                <section class="vaultPlacementCard" aria-live="polite">
-                    <div>
-                        <p class="sectionLabel">Not sure where to begin?</p>
-                        <h2>Get a level recommendation in about 10 minutes.</h2>
-                        <p id="vaultPlacementSummary">
-                            Answer real Arabic questions on reading, vocabulary,
-                            grammar, and comprehension. You can retake the exam
-                            whenever your skills change.
-                        </p>
-                    </div>
-                    <a class="ctaButton" href="placement.html" id="vaultPlacementAction">Start exam</a>
-                    <button
-                        class="vaultPlacementDismiss"
-                        type="button"
-                        id="vaultPlacementDismiss"
-                        aria-label="Hide placement recommendation">
-                        <span aria-hidden="true">⌄</span>
-                        Hide
-                    </button>
-                </section>
+            <section class="vaultPlacementCard" aria-live="polite">
+                <div>
+                    <p class="sectionLabel">Not sure where to begin?</p>
+                    <h2>Get a level recommendation in about 10 minutes.</h2>
+                    <p id="vaultPlacementSummary">
+                        Answer real Arabic questions on reading, vocabulary,
+                        grammar, and comprehension. You can retake the exam
+                        whenever your skills change.
+                    </p>
+                </div>
+                <a class="ctaButton" href="placement.html" id="vaultPlacementAction">Start exam</a>
+                <button
+                    class="vaultPlacementDismiss"
+                    type="button"
+                    id="vaultPlacementDismiss"
+                    aria-expanded="true"
+                    aria-controls="vaultPlacementSummary"
+                    aria-label="Minimize placement recommendation">
+                    <span aria-hidden="true">⌄</span>
+                    <span class="vaultPlacementDismissLabel">Hide</span>
+                </button>
+            </section>
 
+            <section class="vaultCurriculum" aria-labelledby="vaultCurriculumHeading">
                 <div class="vaultBrowseHeading">
                     <div>
                         <p class="sectionLabel">Your curriculum</p>
-                        <h2>Browse by level.</h2>
+                        <h2 id="vaultCurriculumHeading">Browse by level.</h2>
                     </div>
                     <p>
                         Select a level, then open a unit and its track to reveal
-                    the sub-levels and lessons below.
-                </p>
-            </div>
+                        the sub-levels and lessons below.
+                    </p>
+                </div>
 
-            <div class="vaultSearch">
-                <label for="materialSearch">Search materials</label>
-                <input
-                    id="materialSearch"
-                    type="search"
-                    placeholder="Search by title or keyword"
-                    autocomplete="off">
-                <p id="materialSearchStatus" class="vaultSearchStatus" aria-live="polite"></p>
-            </div>
+                <div class="vaultSearch">
+                    <label for="materialSearch">Search materials</label>
+                    <input
+                        id="materialSearch"
+                        type="search"
+                        placeholder="Search by title or keyword"
+                        autocomplete="off">
+                    <p id="materialSearchStatus" class="vaultSearchStatus" aria-live="polite"></p>
+                </div>
 
-            <section class="vaultSearchResults" aria-labelledby="materialSearchHeading" hidden>
-                <h2 id="materialSearchHeading">Search results</h2>
-                <div id="materialSearchList"></div>
+                <section class="vaultSearchResults" aria-labelledby="materialSearchHeading" hidden>
+                    <h2 id="materialSearchHeading">Search results</h2>
+                    <div id="materialSearchList"></div>
+                </section>
+
+                <div class="vaultLevels" aria-label="Curriculum levels"></div>
             </section>
-
-            <div class="vaultLevels" aria-label="Curriculum levels"></div>
         </section>
     </main>
 </body>

@@ -2487,6 +2487,10 @@ h2 {
     gap: 0.5rem;
 }
 
+.placementNavigationGroup button {
+    min-width: 9rem;
+}
+
 .placementNavigation .placementSubmit {
     margin-left: 0.5rem;
 }

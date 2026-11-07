@@ -86,6 +86,93 @@ nav {
     color: var(--emerald);
 }
 
+.navMenu {
+    position: relative;
+}
+
+.navMenuPanel,
+.navSubmenuPanel {
+    position: absolute;
+    z-index: 30;
+    display: grid;
+    min-width: 12rem;
+    padding: 0.45rem;
+    border: 1px solid rgba(15, 76, 69, 0.15);
+    border-radius: 0.6rem;
+    background: var(--cream);
+    box-shadow: 0 0.75rem 1.5rem rgba(27, 31, 30, 0.14);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(0.35rem);
+    transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
+}
+
+.navMenuPanel {
+    top: calc(100% + 0.35rem);
+    left: 0;
+}
+
+.navSubmenuPanel {
+    top: -0.45rem;
+    left: calc(100% + 0.35rem);
+}
+
+.navLetterMenu {
+    position: relative;
+}
+
+.navLetterPanel {
+    position: absolute;
+    top: -0.45rem;
+    left: calc(100% + 0.35rem);
+    z-index: 31;
+    display: grid;
+    min-width: 16rem;
+    padding: 0.45rem;
+    border: 1px solid rgba(15, 76, 69, 0.15);
+    border-radius: 0.6rem;
+    background: var(--cream);
+    box-shadow: 0 0.75rem 1.5rem rgba(27, 31, 30, 0.14);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateX(0.35rem);
+    transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
+}
+
+.navMenuPanel a,
+.navSubmenuPanel a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 10rem;
+    padding: 0.55rem 0.7rem;
+    border-radius: 0.35rem;
+    color: var(--ink);
+    font-size: 0.82rem;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.navMenuPanel a:hover,
+.navSubmenuPanel a:hover {
+    background: rgba(201, 162, 75, 0.16);
+    color: var(--emerald);
+}
+
+.navMenu:hover > .navMenuPanel,
+.navMenu:focus-within > .navMenuPanel,
+.navSubmenu:hover > .navSubmenuPanel,
+.navSubmenu:focus-within > .navSubmenuPanel,
+.navLetterMenu:hover > .navLetterPanel,
+.navLetterMenu:focus-within > .navLetterPanel {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
 /* Navigation logo */
 .navLogo {
     padding: 0.25rem 1rem;
@@ -1152,6 +1239,132 @@ h2 {
     font-size: 0.9rem;
     font-weight: 600;
 }
+
+.bookDirectoryPage {
+    width: min(100%, 70rem);
+}
+
+.dictionaryBackLink {
+    flex: 0 0 auto;
+    padding: 0.6rem 0.9rem;
+    border: 1px solid rgba(15, 76, 69, 0.25);
+    border-radius: 0.5rem;
+    color: var(--emerald);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.dictionaryBackLink:hover {
+    border-color: var(--gold);
+    background: rgba(201, 162, 75, 0.12);
+}
+
+.bookDirectory {
+    padding: 1.5rem;
+    border: 1px solid rgba(15, 76, 69, 0.14);
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.55);
+}
+
+.bookDirectoryToolbar {
+    display: grid;
+    gap: 0.45rem;
+}
+
+.bookDirectoryToolbar label {
+    color: var(--emerald);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.bookDirectoryToolbar input {
+    width: 100%;
+    max-width: 34rem;
+    padding: 0.8rem 1rem;
+    border: 1px solid rgba(15, 76, 69, 0.24);
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.8);
+    color: var(--ink);
+    font: 0.95rem var(--Inter);
+}
+
+.bookLetterFilters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0.5rem 0 1.5rem;
+}
+
+.bookLetterFilters button {
+    width: auto;
+    height: auto;
+    padding: 0.4rem 0.7rem;
+    border: 1px solid rgba(15, 76, 69, 0.2);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--emerald);
+    font-size: 0.8rem;
+}
+
+.bookLetterFilters button:hover,
+.bookLetterFilters .bookLetterActive {
+    border-color: var(--gold);
+    background: rgba(201, 162, 75, 0.16);
+}
+
+.bookDirectoryList {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.bookDirectoryCard {
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid rgba(15, 76, 69, 0.13);
+    border-radius: 0.7rem;
+    background: rgba(247, 241, 227, 0.65);
+}
+
+.bookDirectoryLetter {
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0.5rem;
+    background: var(--emerald);
+    color: var(--gold);
+    font-family: var(--Lora);
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.bookDirectoryCard h2 {
+    margin: 0;
+    color: var(--emerald);
+    font-size: 1.15rem;
+}
+
+.bookDirectoryCard p {
+    margin: 0.2rem 0 0;
+    color: rgba(27, 31, 30, 0.62);
+    font-size: 0.85rem;
+}
+
+.bookDictionaryCount {
+    color: rgba(27, 31, 30, 0.62);
+    font-size: 0.75rem;
+    white-space: nowrap;
+}
+
+.bookDirectoryEmpty {
+    margin: 0;
+    color: rgba(27, 31, 30, 0.65);
+}
+
 
 .dictionarySynonymMeta {
     color: rgba(27, 31, 30, 0.58);
@@ -2348,6 +2561,41 @@ h2 {
         align-items: stretch;
         justify-self: stretch;
         gap: 0.75rem;
+    }
+
+    .navMenu {
+        display: grid;
+    }
+
+    .navMenuPanel,
+    .navSubmenuPanel,
+    .navLetterPanel {
+        position: static;
+        display: none;
+        min-width: 0;
+        margin: 0.25rem 0 0 0.75rem;
+        padding: 0.35rem;
+        box-shadow: none;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        pointer-events: auto;
+    }
+
+    .navMenu:hover > .navMenuPanel,
+    .navMenu:focus-within > .navMenuPanel,
+    .navSubmenu:hover > .navSubmenuPanel,
+    .navSubmenu:focus-within > .navSubmenuPanel,
+    .navLetterMenu:hover > .navLetterPanel,
+    .navLetterMenu:focus-within > .navLetterPanel {
+        display: grid;
+    }
+
+    .navMenuPanel a,
+    .navSubmenuPanel a,
+    .navLetterPanel a {
+        min-width: 0;
+        white-space: normal;
     }
 
     .navButtonContainer {

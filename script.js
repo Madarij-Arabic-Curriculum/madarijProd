@@ -562,6 +562,81 @@ const dictionaryWordList = document.querySelector("#dictionaryWordList");
 const dictionaryEntry = document.querySelector("#dictionaryEntry");
 const dictionarySearchStatus = document.querySelector("#dictionarySearchStatus");
 const arabicKeyboard = document.querySelector("#arabicKeyboard");
+const bookSearch = document.querySelector("#bookSearch");
+const bookDirectoryList = document.querySelector("#bookDirectoryList");
+const bookLetterFilters = document.querySelector("#bookLetterFilters");
+const bookSearchStatus = document.querySelector("#bookSearchStatus");
+
+const dictionaryBooks = [
+    { title: "Al-Kitaab fii Ta'allum al-'Arabiyya", author: "Mahdi Alosh", dictionaries: 3 },
+    { title: "Arabic Between Your Hands", author: "Abdul Rahman Al-Fawzan", dictionaries: 2 },
+    { title: "Gateway to Arabic", author: "Imran Hamza Alawiye", dictionaries: 1 },
+    { title: "Madinah Arabic Reader", author: "Abdur Rahim", dictionaries: 4 },
+    { title: "Mastering Arabic", author: "Jane Wightwick and Mahmoud Gaafar", dictionaries: 2 },
+    { title: "Qasas an-Nabiyyin", author: "Abul Hasan Ali Nadwi", dictionaries: 1 }
+].sort(function (first, second) {
+    return first.title.localeCompare(second.title);
+});
+
+function renderBookDirectory(query, selectedLetter) {
+    const normalizedQuery = query.trim().toLowerCase();
+    const matches = dictionaryBooks.filter(function (book) {
+        const startsWithLetter = !selectedLetter || book.title.toUpperCase().startsWith(selectedLetter);
+        const matchesQuery = !normalizedQuery ||
+            `${book.title} ${book.author}`.toLowerCase().includes(normalizedQuery);
+        return startsWithLetter && matchesQuery;
+    });
+
+    bookDirectoryList.innerHTML = matches.length
+        ? matches.map(function (book) {
+            const letter = book.title.charAt(0).toUpperCase();
+            return `
+                <article class="bookDirectoryCard" id="letter-${letter.toLowerCase()}">
+                    <span class="bookDirectoryLetter">${escapeHtml(letter)}</span>
+                    <div>
+                        <h2>${escapeHtml(book.title)}</h2>
+                        <p>${escapeHtml(book.author)}</p>
+                    </div>
+                    <span class="bookDictionaryCount">${book.dictionaries} demo entr${book.dictionaries === 1 ? "y" : "ies"}</span>
+                </article>
+            `;
+        }).join("")
+        : `<p class="bookDirectoryEmpty">No books match this filter.</p>`;
+
+    bookSearchStatus.textContent = `${matches.length} book${matches.length === 1 ? "" : "s"} available`;
+    bookLetterFilters.querySelectorAll("[data-book-letter]").forEach(function (button) {
+        button.classList.toggle("bookLetterActive", button.dataset.bookLetter === selectedLetter);
+    });
+}
+
+if (bookSearch && bookDirectoryList && bookLetterFilters && bookSearchStatus) {
+    const letters = Array.from(new Set(dictionaryBooks.map(function (book) {
+        return book.title.charAt(0).toUpperCase();
+    })));
+    bookLetterFilters.innerHTML = `<button type="button" data-book-letter="">All</button>` +
+        letters.map(function (letter) {
+            return `<button type="button" data-book-letter="${letter}">${letter}</button>`;
+        }).join("");
+
+    renderBookDirectory("", "");
+    const requestedLetter = window.location.hash.replace("#letter-", "").toUpperCase();
+    if (letters.includes(requestedLetter)) {
+        renderBookDirectory("", requestedLetter);
+    }
+
+    bookSearch.addEventListener("input", function () {
+        renderBookDirectory(bookSearch.value, "");
+    });
+
+    bookLetterFilters.addEventListener("click", function (event) {
+        const letterButton = event.target.closest("[data-book-letter]");
+        if (!letterButton) {
+            return;
+        }
+
+        renderBookDirectory(bookSearch.value, letterButton.dataset.bookLetter);
+    });
+}
 
 const dictionaryWords = [
     {

@@ -115,17 +115,21 @@ nav {
 
 .navSubmenuPanel {
     top: -0.45rem;
-    left: calc(100% + 0.35rem);
+    left: 100%;
 }
 
 .navLetterMenu {
     position: relative;
 }
 
+.navSubmenu {
+    position: relative;
+}
+
 .navLetterPanel {
     position: absolute;
     top: -0.45rem;
-    left: calc(100% + 0.35rem);
+    left: 100%;
     z-index: 31;
     display: grid;
     min-width: 16rem;

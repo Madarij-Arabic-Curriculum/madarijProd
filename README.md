@@ -11,3 +11,5 @@ show singular, dual, and plural forms. The verb entry shows its Baab with
 past, present, masdar, derived forms, and a complete 14-form conjugation
 table. The alphabetical search and entry layout are ready to be connected to
 a JSON dictionary when the data source is available.
+
+Website is Vibe Coded. 

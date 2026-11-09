@@ -646,7 +646,7 @@ h2 {
 .dictionaryWorkspace {
     display: grid;
     grid-template-columns: minmax(12rem, 17rem) minmax(0, 1fr);
-    gap: 2rem;
+    gap: 2.5rem;
     align-items: start;
 }
 
@@ -2218,11 +2218,11 @@ h2 {
     gap: 2rem;
     margin-bottom: 0;
     padding: 2rem 1.75rem 1.75rem;
-    border: 3px solid var(--emerald);
+    border: 2px solid var(--emerald);
     border-radius: 1rem;
     overflow: hidden;
     background: linear-gradient(110deg, rgba(15, 76, 69, 0.08), rgba(201, 162, 75, 0.16));
-    animation: placementGlow 10s ease-in-out infinite;
+    animation: placementGlow 8s ease-in-out infinite;
     isolation: isolate;
 }
 
@@ -2244,23 +2244,6 @@ h2 {
     filter: blur(1rem);
     opacity: 0.12;
     animation: placementAiGlow 10s ease-in-out infinite;
-}
-
-.vaultPlacementSnake {
-    position: absolute;
-    z-index: 2;
-    width: 2.2rem;
-    height: 3px;
-    border-radius: 999px;
-    background: var(--gold);
-    box-shadow: 0 0 0.3rem rgba(201, 162, 75, 0.8);
-    offset-path: inset(1.5px round calc(1rem - 1.5px));
-    offset-rotate: 0deg;
-    animation: placementSnakeRun 3s linear infinite;
-}
-
-.vaultPlacementSnakeTwo {
-    animation-delay: -1.5s;
 }
 
 .vaultPlacementCard > * {
@@ -2290,10 +2273,6 @@ h2 {
     animation: placementMinimizedAiGlow 4s ease-in-out infinite;
 }
 
-.vaultPlacementCardMinimized .vaultPlacementSnake {
-    display: none;
-}
-
 .vaultPlacementCardMinimized > div {
     display: flex;
     align-items: center;
@@ -2321,6 +2300,7 @@ h2 {
     0%,
     100% {
         background-position: 0% 50%;
+        border-color: rgba(15, 76, 69, 0.9);
         box-shadow:
             0 0 0.35rem rgba(15, 76, 69, 0.28),
             0 0 0.7rem rgba(201, 162, 75, 0.16);
@@ -2328,6 +2308,7 @@ h2 {
 
     50% {
         background-position: 100% 50%;
+        border-color: rgba(201, 162, 75, 0.8);
         box-shadow:
             0 0 0.55rem rgba(15, 76, 69, 0.4),
             0 0 1rem rgba(201, 162, 75, 0.24);
@@ -2346,12 +2327,6 @@ h2 {
         background-position: 100% 50%;
         opacity: 0.24;
         transform: scale(1.015);
-    }
-}
-
-@keyframes placementSnakeRun {
-    to {
-        offset-distance: 100%;
     }
 }
 
@@ -2982,8 +2957,7 @@ h2 {
     .vaultMaterials,
     .supportMenu,
     .vaultPlacementCard,
-    .vaultPlacementCard::before,
-    .vaultPlacementSnake {
+    .vaultPlacementCard::before {
         transition: none;
         animation: none;
     }

@@ -1401,9 +1401,6 @@ const vaultPlacementSummary = document.querySelector("#vaultPlacementSummary");
 const vaultPlacementAction = document.querySelector("#vaultPlacementAction");
 const vaultPlacementCard = document.querySelector(".vaultPlacementCard");
 const vaultPlacementDismiss = document.querySelector("#vaultPlacementDismiss");
-const vaultPlacementDismissIcon = vaultPlacementDismiss
-    ? vaultPlacementDismiss.querySelector(".vaultPlacementDismissIcon")
-    : null;
 const vaultPlacementDismissLabel = document.querySelector(".vaultPlacementDismissLabel");
 
 if (vaultLevels && vaultPlacementSummary && vaultPlacementAction && vaultPlacementCard) {
@@ -1414,9 +1411,6 @@ if (vaultLevels && vaultPlacementSummary && vaultPlacementAction && vaultPlaceme
 
     if (placementMinimized) {
         vaultPlacementCard.classList.add("vaultPlacementCardMinimized");
-        if (vaultPlacementDismissIcon) {
-            vaultPlacementDismissIcon.textContent = "⌃";
-        }
         if (vaultPlacementDismissLabel) {
             vaultPlacementDismissLabel.textContent = "Show";
         }
@@ -1453,9 +1447,6 @@ if (vaultPlacementDismiss && vaultPlacementCard) {
             "aria-label",
             isMinimized ? "Show placement recommendation" : "Minimize placement recommendation"
         );
-        if (vaultPlacementDismissIcon) {
-            vaultPlacementDismissIcon.textContent = isMinimized ? "⌃" : "⌄";
-        }
         if (vaultPlacementDismissLabel) {
             vaultPlacementDismissLabel.textContent = isMinimized ? "Show" : "Hide";
         }

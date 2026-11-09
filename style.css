@@ -2242,7 +2242,7 @@ h2 {
     background-size: 300% 300%;
     content: "";
     filter: blur(1rem);
-    opacity: 0.2;
+    opacity: 0.12;
     animation: placementAiGlow 10s ease-in-out infinite;
 }
 
@@ -2263,7 +2263,7 @@ h2 {
 }
 
 .vaultPlacementCardMinimized::before {
-    opacity: 0.65;
+    opacity: 0.35;
     animation: placementMinimizedAiGlow 4s ease-in-out infinite;
 }
 
@@ -2293,7 +2293,7 @@ h2 {
 
     50% {
         background-position: 100% 50%;
-        box-shadow: 0 0 1rem rgba(201, 162, 75, 0.08);
+        box-shadow: 0 0 0.75rem rgba(201, 162, 75, 0.05);
     }
 }
 
@@ -2307,7 +2307,7 @@ h2 {
 
     50% {
         background-position: 100% 50%;
-        opacity: 0.28;
+        opacity: 0.16;
         transform: scale(1.015);
     }
 }
@@ -2319,7 +2319,7 @@ h2 {
     }
 
     50% {
-        box-shadow: 0 0 1.5rem rgba(91, 214, 190, 0.28);
+        box-shadow: 0 0 1rem rgba(91, 214, 190, 0.14);
     }
 }
 
@@ -2327,12 +2327,12 @@ h2 {
     0%,
     100% {
         background-position: 0% 50%;
-        opacity: 0.35;
+        opacity: 0.2;
     }
 
     50% {
         background-position: 100% 50%;
-        opacity: 0.85;
+        opacity: 0.45;
     }
 }
 
@@ -2393,13 +2393,12 @@ h2 {
     display: inline-block;
     font-size: 0.9rem;
     line-height: 1;
-    transform: none;
     vertical-align: middle;
 }
 
 .vaultPlacementDismissIcon {
-    order: 0;
-    margin-right: 0.05rem;
+    order: 1;
+    margin-left: 0.05rem;
 }
 
 .vaultPlacementDismiss:hover {

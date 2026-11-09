@@ -2233,16 +2233,16 @@ h2 {
     border-radius: inherit;
     background: linear-gradient(
         115deg,
-        rgba(15, 76, 69, 0.8),
-        rgba(91, 214, 190, 0.75),
-        rgba(201, 162, 75, 0.85),
-        rgba(185, 112, 255, 0.7),
-        rgba(15, 76, 69, 0.8)
+        rgba(15, 76, 69, 0.9),
+        rgba(201, 162, 75, 0.9),
+        rgba(15, 76, 69, 0.9),
+        rgba(201, 162, 75, 0.9),
+        rgba(15, 76, 69, 0.9)
     );
     background-size: 300% 300%;
     content: "";
     filter: blur(1rem);
-    opacity: 0.12;
+    opacity: 0.2;
     animation: placementAiGlow 10s ease-in-out infinite;
 }
 
@@ -2278,6 +2278,12 @@ h2 {
     font-size: 0.65rem;
 }
 
+.vaultPlacementCard > div > .sectionLabel {
+    color: var(--gold);
+    font-weight: 700;
+    text-shadow: 0 0 0.6rem rgba(201, 162, 75, 0.28);
+}
+
 .vaultPlacementCardMinimized h2,
 .vaultPlacementCardMinimized p:last-child,
 .vaultPlacementCardMinimized .ctaButton {
@@ -2307,7 +2313,7 @@ h2 {
 
     50% {
         background-position: 100% 50%;
-        opacity: 0.16;
+        opacity: 0.24;
         transform: scale(1.015);
     }
 }

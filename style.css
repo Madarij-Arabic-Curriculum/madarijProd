@@ -2224,7 +2224,7 @@ h2 {
     gap: 2rem;
     margin-bottom: 0;
     padding: 2rem 1.75rem 1.75rem;
-    border: 3px solid transparent;
+    border: 3px solid var(--emerald);
     border-radius: 1rem;
     overflow: hidden;
     background: linear-gradient(110deg, rgba(15, 76, 69, 0.08), rgba(201, 162, 75, 0.16));
@@ -2260,10 +2260,10 @@ h2 {
     border-radius: inherit;
     background: conic-gradient(
         from var(--placementRailAngle),
-        var(--gold) 0deg 10deg,
-        var(--emerald) 10deg 180deg,
+        transparent 0deg 10deg,
+        transparent 10deg 180deg,
         var(--gold) 180deg 190deg,
-        var(--emerald) 190deg 360deg
+        transparent 190deg 360deg
     );
     content: "";
     pointer-events: none;
@@ -2303,6 +2303,10 @@ h2 {
 .vaultPlacementCardMinimized::before {
     opacity: 0.35;
     animation: placementMinimizedAiGlow 4s ease-in-out infinite;
+}
+
+.vaultPlacementCardMinimized::after {
+    animation-duration: 8s;
 }
 
 .vaultPlacementCardMinimized > div {

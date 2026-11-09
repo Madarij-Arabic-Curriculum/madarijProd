@@ -2329,10 +2329,12 @@ h2 {
 @keyframes placementMinimizedGlow {
     0%,
     100% {
+        border-color: rgba(201, 162, 75, 0.75);
         box-shadow: 0 0 0 rgba(91, 214, 190, 0);
     }
 
     50% {
+        border-color: rgba(15, 76, 69, 0.85);
         box-shadow: 0 0 1rem rgba(91, 214, 190, 0.14);
     }
 }

@@ -2224,18 +2224,17 @@ h2 {
     gap: 2rem;
     margin-bottom: 0;
     padding: 1.75rem 1.5rem 1.5rem;
-    border: 3px solid var(--emerald);
-    border-image: conic-gradient(
+    border: 3px solid transparent;
+    border-radius: 1rem;
+    background-image:
+        linear-gradient(110deg, rgba(15, 76, 69, 0.08), rgba(201, 162, 75, 0.16)),
+        conic-gradient(
             from var(--placementRailAngle),
             var(--emerald) 0deg 340deg,
             var(--gold) 346deg 354deg,
             var(--emerald) 360deg
-        )
-        1;
-    border-radius: 1rem;
-    background:
-        linear-gradient(110deg, rgba(15, 76, 69, 0.08), rgba(201, 162, 75, 0.16)) padding-box,
-        linear-gradient(115deg, var(--emerald), var(--gold), var(--emerald), var(--gold)) border-box;
+        );
+    background-clip: padding-box, border-box;
     background-size: 180% 180%, 300% 300%;
     animation:
         placementGlow 10s ease-in-out infinite,
@@ -2280,7 +2279,15 @@ h2 {
     align-items: center;
     min-height: 2rem;
     padding: 0.25rem 0.65rem;
-    background: rgba(255, 255, 255, 0.55);
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)),
+        conic-gradient(
+            from var(--placementRailAngle),
+            var(--emerald) 0deg 340deg,
+            var(--gold) 346deg 354deg,
+            var(--emerald) 360deg
+        );
+    background-clip: padding-box, border-box;
     animation:
         placementMinimizedGlow 5s ease-in-out infinite,
         placementRailRun 4s linear infinite;

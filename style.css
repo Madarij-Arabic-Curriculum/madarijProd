@@ -2218,7 +2218,7 @@ h2 {
     gap: 2rem;
     margin-bottom: 0;
     padding: 1.75rem 1.5rem 1.5rem;
-    border: 1px solid transparent;
+    border: 1px solid rgba(201, 162, 75, 0.75);
     border-radius: 1rem;
     background:
         linear-gradient(110deg, rgba(15, 76, 69, 0.08), rgba(201, 162, 75, 0.16)) padding-box,
@@ -2296,12 +2296,18 @@ h2 {
     0%,
     100% {
         background-position: 0% 50%;
-        box-shadow: 0 0 0 rgba(201, 162, 75, 0);
+        border-color: rgba(201, 162, 75, 0.75);
+        box-shadow:
+            0 0 0.35rem rgba(15, 76, 69, 0.28),
+            0 0 0.7rem rgba(201, 162, 75, 0.16);
     }
 
     50% {
         background-position: 100% 50%;
-        box-shadow: 0 0 0.75rem rgba(201, 162, 75, 0.05);
+        border-color: rgba(15, 76, 69, 0.85);
+        box-shadow:
+            0 0 0.55rem rgba(15, 76, 69, 0.4),
+            0 0 1rem rgba(201, 162, 75, 0.24);
     }
 }
 
